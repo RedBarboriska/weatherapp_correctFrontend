@@ -1,0 +1,76 @@
+
+.miniWeatherWidget {
+    align-items: center;
+    width: 150px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    /*border: 2px solid #3e5ea2;*/
+    background-color: #cae4fa;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.miniWeatherWidget:hover {
+    background-color: rgb(181, 222, 255); /* Затемнення */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/*
+.miniWeatherWidget div {
+    pointer-events: none;
+}*/
+
+.cityName {
+    font-size: 25px;
+    color: #4463AE;
+}
+
+.regionName {
+    font-size: 12px;
+    color: #8191b9;
+}
+
+.temperature {
+    font-size: 25px;
+    color: #4463AE;
+}
+
+.mainInfo {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    display: flex;
+}
+
+.tempInfo {
+    flex-direction: column;
+    display: flex;
+}
+
+.minmax {
+    color: #4463AE;
+    width: 70%;
+    flex-direction: column;
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.minmaxTemp, .minmaxNames {
+    flex-direction: row;
+    display: flex;
+    flex: 1;
+    width: 100%;
+
+}
+
+
+.minmax div {
+    /*border: 2px solid #3e5ea2;*/
+    flex: 1;
+}

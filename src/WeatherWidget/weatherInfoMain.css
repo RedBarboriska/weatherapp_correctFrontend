@@ -1,0 +1,113 @@
+
+.mainWeatherWidget {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.wigetMain {
+    display: flex;
+    flex: 1;
+    background-color: #E2F1FD;
+}
+
+.wigetColumns1, .wigetColumns2, .wigetColumns3, .wigetColumns4 {
+    display: flex;
+
+    /*background-color: rgb(214, 215, 246);*/
+    /*border: 2px solid #3e5ea2; */
+
+}
+
+.wigetColumns1 {
+    flex-direction: column;
+    text-align: left;
+    width: 25%;
+    padding: 10px;
+}
+
+.wigetColumns1 hr {
+    width: 100%;
+    background-color: #d3dbef;
+    border: none;
+    height: 2px;
+
+    margin: 1px 0;
+
+}
+
+.wigetAttr {
+    /*border: 2px solid #3e5ea2;*/
+}
+
+.wigetColumns2 {
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+    align-items: center;
+    width: 30%;
+    font-size: 20px;
+    color: #4463AE;
+
+}
+
+.degree {
+    font-size: 50px;
+}
+
+.wigetColumns3 {
+    flex-direction: column;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.wigetColumns3 img {
+    width: 150%;
+    max-height: 300%;
+    /* Add this line to preserve the aspect ratio of the image */
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.wigetColumns4 {
+    flex-direction: column;
+    width: 20%;
+}
+
+.wigetColumns4 img {
+    width: 50px;
+    filter: opacity(50%);
+}
+
+.wigetCityDiv {
+    display: flex;
+    flex-direction: row; /* Add this line */
+    flex: 1;
+    align-items: flex-end;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #cae4fa;
+    /* background-color: rgb(129, 131, 192);*/
+    color: #4463AE;
+}
+
+.wigetCityName {
+    text-align: left;
+    padding: 10px;
+    flex-direction: row;
+    font-size: 25px;
+}
+
+.wigetCityReg {
+    text-align: left;
+    padding: 10px;
+    flex-direction: row;
+}
+
+.test {
+
+}

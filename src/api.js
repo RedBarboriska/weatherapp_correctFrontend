@@ -1,0 +1,14 @@
+const KEY = '2c4bf9b50dec4d1eaad114823232704'
+const BASE_URL = 'http://api.weatherapi.com/v1/'
+
+export const getWeatherData = async (query) => {
+    const response = await fetch(`${BASE_URL}forecast.json?&days=3&key=${KEY}&q=${query}&lang=uk`);
+    const jsonData = await response.json();
+    return jsonData
+}
+//`${BASE_URL}current.json?&key=${KEY}&q=${query}&lang=uk`
+export const getForecastWeatherData = async (query) => {
+    const response = await fetch(`${BASE_URL}forecast.json?&days=3&key=${KEY}&q=${query}&lang=uk`);
+    const jsonData = await response.json();
+    return jsonData
+}

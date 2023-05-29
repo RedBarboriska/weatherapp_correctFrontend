@@ -1,0 +1,100 @@
+import React, {useEffect, useState} from 'react';
+import {useAppDispatch, useAppSelector} from '../../../state/hooks';
+import {
+    fetchCurrentWeatherAsync,
+    isLoadingSelector,
+    weatherDataSelector,
+    weatherErrorSelector
+} from '../state/weather.slice';
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+import styled from "styled-components";
+// @ts-ignore
+import MapModal from "../Map/MapModal";
+import ReactDOM from 'react-dom';
+import {getDataKey, getLocationQuery} from "./weatherWidget.helpers";
+import WeatherInfoMain from "./WeatherInfoMain";
+import {changeCoords} from "../state/user.slice";
+
+
+const WidgetWrapper = styled.div`
+//придумати якісь стилі
+`
+
+const WeatherWidget = () => {
+    const dispatch = useDispatch()
+    const location = useSelector((state) => state.location)
+    //const [location, setLocation] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false)
+    const [geolocationError, setGeolocationError] = useState(false)
+
+    const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
+    const isLoading = useSelector(state => isLoadingSelector(state, getDataKey(location)), shallowEqual)
+    const error = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
+    //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
+
+    useEffect(() => {
+        const fetchLocation = () => {
+            if (location) {
+                if (location.cityName === "") {
+                    dispatch(fetchCurrentWeatherAsync({q: `${location.latitude},${location.longitude}`}))
+                } else {
+                    dispatch(fetchCurrentWeatherAsync({q: `${location.cityName}`}))
+                }
+
+            } else {
+                getLocationQuery(q => {
+                    //перевірити що повертає
+                    changeCoords({latitude: q.latitude, longitude: q.longitude})
+                    if (error) {
+                        setGeolocationError(true)
+                    }
+
+                })
+            }
+        }
+        fetchLocation()
+        const id = setInterval(fetchLocation, 300000)
+
+        return () => {
+            clearInterval(id)
+        }
+    }, [location, dispatch]);
+
+    return (<>
+            <WidgetWrapper
+                onClick={() => {
+                    setModalVisible(true)
+                }}>
+
+                {!isLoading && !error && !geolocationError &&
+                    <>
+                        <WeatherInfoMain weatherData={weatherData}/>
+                    </>
+                }
+                {isLoading && <p>Завантаження... </p>}
+                {geolocationError &&
+                    <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
+                {error && <div>За вашим запитом нічого не знайдено</div>}
+            </WidgetWrapper>
+            {/*{modalVisible &&*/}
+            {/*    ReactDOM.createPortal(<MapModal defaultLocation={location} onClose={(data) => {*/}
+            {/*        setLocation(data)*/}
+            {/*        setModalVisible(false)*/}
+            {/*    }}/>, document.body)}*/}
+        </>
+    );
+
+}
+
+export default WeatherWidget
+
+/*
+{isLoading && <>
+                {geoError && "Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті"}
+                {!geoError && <p>Завантаження... </p>}
+            </>}
+            {!isLoading && searchError && <>
+                <div>За вашим запитом нічого не знайдено</div>
+            </>}
+
+*/
