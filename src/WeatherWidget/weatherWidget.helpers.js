@@ -12,7 +12,7 @@ export const getLocationQuery = (callback) => {
         },
         e => {//перевірити що повертає
             callback({
-                latitude: 51.6938446, longitude: -0.1774186, error: true
+                latitude: 50.44989086706778, longitude: 30.524897236099616, error: true
             });
         },
         {enableHighAccuracy: true},

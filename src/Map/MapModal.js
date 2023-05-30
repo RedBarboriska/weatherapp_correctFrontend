@@ -42,7 +42,11 @@ const MapModal = ({onClose, defaultLocation = null}) => {
     const [selectedPoint, setSelectedPoint] = useState(null);
     console.log('MapModal')
     const onCloseHandler = useCallback(() => {
-        onClose(selectedPoint);
+        if(selectedPoint){
+        onClose(selectedPoint);}
+        else{
+            onClose(defaultLocation)
+        }
     }, [onClose, selectedPoint]);
 
     return (

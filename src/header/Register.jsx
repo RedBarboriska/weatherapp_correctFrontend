@@ -36,7 +36,7 @@ const Register = () => {
                 <input type="password" placeholder="Введіть пароль" name="psw" value={password}
                        onChange={(e) => setPassword(e.target.value)} required/>
             </div>
-            <input type="submit" onClick={async () => await signUp(login, password, name)} value="Увійти"/>
+            <input type="submit" onClick={async () => await signUp(login, password, name)} value="Зареэструватися"/>
 
         </div>
 

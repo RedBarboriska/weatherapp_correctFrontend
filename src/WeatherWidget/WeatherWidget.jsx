@@ -11,6 +11,7 @@ import styled from "styled-components";
 import {getDataKey, getLocationQuery} from "./weatherWidget.helpers";
 import WeatherInfoMain from "./WeatherInfoMain";
 import {changeCoords} from "../state/location.slice";
+import {setGeolocation} from "../state/geolocation.slice";
 
 
 
@@ -21,6 +22,7 @@ const WidgetWrapper = styled.div`
 const WeatherWidget = () => {
     const dispatch = useDispatch()
     const location = useSelector((state) => state.location)
+
     //const [location, setLocation] = useState(null);
     const [modalVisible, setModalVisible] = useState(false)
     const [geolocationError, setGeolocationError] = useState(false)
@@ -45,11 +47,17 @@ console.log(weatherData, location)
             }
             else {
                 getLocationQuery(q => {
+                    console.log(q)
                     //перевірити що повертає
                     dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
                     console.log(location)
-                    if (error) {
+                    if (!q.error) {
+                        console.log(q)
+                        dispatch(setGeolocation({latitude: q.latitude, longitude: q.longitude}))
+                    }else{
+                        console.log(q)
                         setGeolocationError(true)
+                        console.log(geolocationError)
                     }
 
                 })
@@ -68,8 +76,10 @@ console.log(weatherData, location)
                 /*onClick={() => {
                     setModalVisible(true)
                 }}*/>
+                {geolocationError &&
+                    <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
 
-                {!isLoading && !error && !geolocationError && weatherData && !weatherData?.error?.message &&
+                {!isLoading && !error && weatherData && !weatherData?.error?.message &&
                     <>
                        {/* {console.log(weatherData)}*/}
                         <WeatherInfoMain weatherData={weatherData}/>
@@ -77,8 +87,7 @@ console.log(weatherData, location)
                 }
                 {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
                 {isLoading && <p>Завантаження... </p>}
-                {geolocationError &&
-                    <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
+
                 {error && <div>За вашим запитом нічого не знайдено</div>}
             </WidgetWrapper>
             {/*{modalVisible &&*/}
