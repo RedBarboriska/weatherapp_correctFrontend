@@ -20,7 +20,7 @@ const Header = () => {
     // const [widgets, setWidgets] = useState([{id: nextId}])
     const location = useSelector((state) => state.location)
     const dispatch = useDispatch()
-    const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location.latitude, location.longitude)), shallowEqual) //location.latitude, location.longitude
+    const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual) //location.latitude, location.longitude
     const user = useSelector((state) => state.user)
     /*  const onCloseHandler = useCallback(() => {
           onClose(selectedPoint);
@@ -37,30 +37,45 @@ const Header = () => {
                 {user.isLogged && <div className="myCities">Мої міста</div>}
 
                 <div className="searchInput">
-                    <input className="searchBar" type="text"
+
+                     <input className="searchBar" type="text"
                            placeholder="Введіть назву населеного пункту" value={city}
                            onChange={(e) => setCity(e.target.value)}/>
-                    <input className="searchButton" type="submit" value="Пошук"
-                           onClick={dispatch(changeCityname(city))}/>
 
-                    <input className="searchButton" type="submit" value="Карта" onClick={setShowMapModal(true)}/>
+                      <input className="searchButton" type="submit" value="Пошук"
+                           onClick={() => dispatch(changeCityname(city))}/>
+
+                     <input className="searchButton" type="submit" value="Карта" onClick={() =>setShowMapModal(true)}/>
 
                 </div>
 
-                {user.isLogged & <div className="login" onClick={dispatch(userSignOut())}>Вийти</div>}
-                {!user.isLogged &
-                    <div className="login" onClick={setShowSigningForm(true)}>Увійти/Зареєструватись</div>}
+                {/*{user.isLogged & <div className="login" onClick={dispatch(userSignOut())}>Вийти</div>}*/}
+                {/*{!user.isLogged &
+                    <div className="login" onClick={setShowSigningForm(true)}>Увійти/Зареєструватись</div>}*/}
             </div>
             {showMapModal &&
                 ReactDOM.createPortal(<MapModal
-                    defaultLocation={{latitude: weatherData.location.lat, longitude: weatherData.location.lon}}
+                    defaultLocation={
+
+                    {latitude: weatherData.location.lat, longitude: weatherData.location.lon}
+                }
                     onClose={(data) => {
                         dispatch(changeCoords(data)) //під питанням
                         //setLocation(data)
                         setShowMapModal(false)
                     }}/>, document.body)}
-            {showSigningForm &&
+           {/* {showSigningForm &&
                 ReactDOM.createPortal(<SigningForm onClose={setShowSigningForm(false)}/>, document.body)}
+*/}
+
+
+
+
+
+
+
+
+
 
             {/*{showMapModal &&*/}
             {/*    <MapModal defaultLocation={mapInitialLocation}*/}

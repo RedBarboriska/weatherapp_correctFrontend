@@ -19,4 +19,5 @@ export const getLocationQuery = (callback) => {
     );
 }
 
-export const getDataKey = (location) => `${location?.latitude},${location?.longitude}`
+export const getDataKey = (location) =>
+    location.cityName !== '' ? `${location?.cityName}` : `${location?.latitude},${location?.longitude}`;

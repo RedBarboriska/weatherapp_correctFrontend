@@ -4,8 +4,9 @@ const BASE_URL = 'http://api.weatherapi.com/v1/'
 export const getWeatherData = async (query) => {
     const response = await fetch(`${BASE_URL}forecast.json?&days=3&key=${KEY}&q=${query.q}&lang=uk`);
     const jsonData = await response.json();
+    console.log(query)
     console.log(query.q)
-    console.log(`${BASE_URL}forecast.json?&days=3&key=${KEY}&q=${query}&lang=uk`)
+    console.log(`${BASE_URL}forecast.json?&days=3&key=${KEY}&q=${query.q}&lang=uk`)
     console.log(jsonData)
     return jsonData
 }

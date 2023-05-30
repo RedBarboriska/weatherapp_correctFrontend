@@ -29,7 +29,8 @@ const WeatherWidget = () => {
     const isLoading = useSelector(state => isLoadingSelector(state, getDataKey(location)), shallowEqual)
     const error = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
     //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
-console.log(weatherData)
+console.log(weatherData, location)
+
     useEffect(() => {
         const fetchLocation = () => {
             if (location.latitude !== "" && location.longitude !== "") {
@@ -38,6 +39,8 @@ console.log(weatherData)
                 console.log(location.longitude)
                     dispatch(fetchCurrentWeatherAsync({q: `${location.latitude},${location.longitude}`}))
             } else if(location.cityName !== ""){
+                console.log(location)
+                console.log(location.cityName)
                     dispatch(fetchCurrentWeatherAsync({q: `${location.cityName}`}))
             }
             else {
@@ -66,12 +69,13 @@ console.log(weatherData)
                     setModalVisible(true)
                 }}*/>
 
-                {!isLoading && !error && !geolocationError &&
+                {!isLoading && !error && !geolocationError && weatherData && !weatherData?.error?.message &&
                     <>
                        {/* {console.log(weatherData)}*/}
                         <WeatherInfoMain weatherData={weatherData}/>
                     </>
                 }
+                {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
                 {isLoading && <p>Завантаження... </p>}
                 {geolocationError &&
                     <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}

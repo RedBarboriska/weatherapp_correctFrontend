@@ -8,6 +8,7 @@ import styled from "styled-components";
 //import MiniWeatherWidget from "./MiniWeatherWidget/MiniWeatherWidget";
 import {useSelector} from "react-redux";
 import WeatherWidget from "./WeatherWidget/WeatherWidget";
+import Header from "./header/Header";
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -30,6 +31,7 @@ function App_redux() {
 
     return (
         <AppWrapper>
+            <Header/>
             <WeatherWidget/>
             {/*<Header/>
             <WeatherWidget/>

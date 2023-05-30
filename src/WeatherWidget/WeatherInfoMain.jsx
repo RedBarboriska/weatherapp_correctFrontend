@@ -2,13 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 import formatDate from "../FormatDate";
 //import {DailyForecast} from "../DailyForecast";
-//import {HourlyForecast} from "../HourlyForecast";
 //import {WeatherResponse} from "../../../state/weather/weather.types";
 import './weatherInfoMain.css';
 import {useDispatch, useSelector} from "react-redux";
 import {addCity, removeCity, signUp} from "../DBcalls/DBcalls";
-import {DailyForecast} from "../DailyForecast";
 import {HourlyForecast} from "../HourlyForecast";
+import {DailyForecast} from "../DailyForecast";
+
 
 
 const WeatherInfoMain = ({weatherData}) => {
@@ -74,7 +74,7 @@ const WeatherInfoMain = ({weatherData}) => {
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>
-            <HourlyForecast data={weatherData}/>
+          <HourlyForecast data={weatherData}/>
 
         </div>
 
