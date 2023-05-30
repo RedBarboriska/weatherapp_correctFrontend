@@ -20,10 +20,10 @@ const DayItems = styled.div`
 `;
 
 
-export const DailyForecast = ({data}) => {
-    console.log(data)
+export const DailyForecast = ({weatherData}) => {
+    console.log(weatherData)
 
-    const filteredArray = data.forecast.forecastday.slice(1); // creates a new array containing the last two objects
+    const filteredArray = weatherData.forecast.forecastday.slice(1); // creates a new array containing the last two objects
 
     console.log(filteredArray); // Output: [{id: 2, name: 'Object 2'}, {id: 3, name: 'Object 3'}]
 

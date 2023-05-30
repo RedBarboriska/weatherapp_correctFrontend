@@ -6,12 +6,6 @@ const initialState = {
     isLogged: false,
     userInfo: {},
     dashboardInfo: {}
-    /*
-    userInfo
-    */
-    /*latitude: '',
-    longitude: '',
-    cityName: ''*/
 };
 
 export const userSlice = createSlice({

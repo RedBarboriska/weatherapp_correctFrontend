@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../state/hooks';
 import {
     fetchCurrentWeatherAsync,
     isLoadingSelector,
@@ -9,11 +8,10 @@ import {
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 // @ts-ignore
-import MapModal from "../Map/MapModal";
-import ReactDOM from 'react-dom';
 import {getDataKey, getLocationQuery} from "./weatherWidget.helpers";
 import WeatherInfoMain from "./WeatherInfoMain";
-import {changeCoords} from "../state/user.slice";
+import {changeCoords} from "../state/location.slice";
+
 
 
 const WidgetWrapper = styled.div`
@@ -31,20 +29,22 @@ const WeatherWidget = () => {
     const isLoading = useSelector(state => isLoadingSelector(state, getDataKey(location)), shallowEqual)
     const error = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
     //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
-
+console.log(weatherData)
     useEffect(() => {
         const fetchLocation = () => {
-            if (location) {
-                if (location.cityName === "") {
+            if (location.latitude !== "" && location.longitude !== "") {
+                console.log(location)
+                console.log(location.latitude)
+                console.log(location.longitude)
                     dispatch(fetchCurrentWeatherAsync({q: `${location.latitude},${location.longitude}`}))
-                } else {
+            } else if(location.cityName !== ""){
                     dispatch(fetchCurrentWeatherAsync({q: `${location.cityName}`}))
-                }
-
-            } else {
+            }
+            else {
                 getLocationQuery(q => {
                     //перевірити що повертає
-                    changeCoords({latitude: q.latitude, longitude: q.longitude})
+                    dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
+                    console.log(location)
                     if (error) {
                         setGeolocationError(true)
                     }
@@ -62,12 +62,13 @@ const WeatherWidget = () => {
 
     return (<>
             <WidgetWrapper
-                onClick={() => {
+                /*onClick={() => {
                     setModalVisible(true)
-                }}>
+                }}*/>
 
                 {!isLoading && !error && !geolocationError &&
                     <>
+                       {/* {console.log(weatherData)}*/}
                         <WeatherInfoMain weatherData={weatherData}/>
                     </>
                 }

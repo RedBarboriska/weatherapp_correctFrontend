@@ -3,13 +3,11 @@
 import {setGeolocation} from "../state/geolocation.slice";
 import {useDispatch} from "react-redux";
 
-const dispatch = useDispatch()
-export const getLocationQuery = (callback: (q: {
-    latitude: number; longitude: number;
-}) => void) => {
+//const dispatch = useDispatch()
+export const getLocationQuery = (callback) => {
     navigator.geolocation.getCurrentPosition(
         pos => {
-            dispatch(setGeolocation(pos.coords))
+           // dispatch(setGeolocation(pos.coords))
             callback(pos.coords);
         },
         e => {//перевірити що повертає

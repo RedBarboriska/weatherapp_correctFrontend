@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import WeatherWidget from "./app/feature/WeatherWidget/WeatherWidget";
-import Button from "./app/components/Button";
+//import WeatherWidget from "./app/feature/WeatherWidget/WeatherWidget";
+//import Button from "./app/components/Button";
 import styled from "styled-components";
 // @ts-ignore
-import {ReactComponent as PlusIcon} from './icons/plus.svg';
-import Header from "./header/Header";
-import MiniWeatherWidget from "./MiniWeatherWidget/MiniWeatherWidget";
+//import {ReactComponent as PlusIcon} from './icons/plus.svg';
+//import Header from "./header/Header";
+//import MiniWeatherWidget from "./MiniWeatherWidget/MiniWeatherWidget";
 import {useSelector} from "react-redux";
+import WeatherWidget from "./WeatherWidget/WeatherWidget";
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -29,9 +30,9 @@ function App_redux() {
 
     return (
         <AppWrapper>
-
-            <Header/>
-            {/*<WeatherWidget/>
+            <WeatherWidget/>
+            {/*<Header/>
+            <WeatherWidget/>
 
             <WeatherWidget key={id}/>*/}
            

@@ -1,9 +1,9 @@
 import {signUp} from "../DBFunctions";
-import React, {useCallback, useState} from "@types/react";
+
 import './header.css';
-import WeatherInfoMain from "../WeatherWidget/WeatherInfoMain";
+//import WeatherInfoMain from "../WeatherWidget/WeatherInfoMain";
 import MapModal from "../Map/MapModal";
-import {setInitialMap} from "../Map/maphelp";
+//import {setInitialMap} from "../Map/maphelp";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {weatherDataSelector} from "../state/weather.slice";
 import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
@@ -11,14 +11,16 @@ import {changeCityname, changeCoords} from "../state/location.slice";
 import SigningForm from "./SigningForm";
 import ReactDOM from "react-dom";
 import {userSignOut} from "../state/user.slice";
+import React, {useState} from "react";
 
 const Header = () => {
     const [city, setCity] = useState('');
     const [showMapModal, setShowMapModal] = useState(false);
     const [showSigningForm, setShowSigningForm] = useState(false);
     // const [widgets, setWidgets] = useState([{id: nextId}])
+    const location = useSelector((state) => state.location)
     const dispatch = useDispatch()
-    const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
+    const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location.latitude, location.longitude)), shallowEqual) //location.latitude, location.longitude
     const user = useSelector((state) => state.user)
     /*  const onCloseHandler = useCallback(() => {
           onClose(selectedPoint);
@@ -55,7 +57,7 @@ const Header = () => {
                     onClose={(data) => {
                         dispatch(changeCoords(data)) //під питанням
                         //setLocation(data)
-                        showMapModal(false)
+                        setShowMapModal(false)
                     }}/>, document.body)}
             {showSigningForm &&
                 ReactDOM.createPortal(<SigningForm onClose={setShowSigningForm(false)}/>, document.body)}

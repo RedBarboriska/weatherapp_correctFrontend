@@ -14,9 +14,10 @@ const initialState = {
 //ACTIONS
 export const fetchCurrentWeatherAsync = createAsyncThunk(
     `${SLICE_KEY}/fetch`,
-    ({q}: { q: string }) => getWeatherData({q}),//createGETRequest({params: {q}})//,
+    ({q}) => getWeatherData({q}),//createGETRequest({params: {q}})//,
+
     {
-        serializeError: (error: any) => ({
+        serializeError: (error) => ({
             ...error.response,
         })
     }
@@ -35,8 +36,9 @@ export const weatherSlice = createSlice({
                 }
             })
             .addCase(fetchCurrentWeatherAsync.fulfilled, (state, action) => {
+
+                state.value[action.meta.arg.q] = action.payload
                 state.isLoading[action.meta.arg.q] = false;
-                state.value[action.meta.arg.q] = action.payload.data
             })
             .addCase(fetchCurrentWeatherAsync.rejected, (state, action) => {
                 state.isLoading[action.meta.arg.q] = false;
@@ -47,8 +49,8 @@ export const weatherSlice = createSlice({
 });
 
 //SELECTORS
-export const isLoadingSelector = (state: RootState, q: string) => state.weather.isLoading[q];
-export const weatherDataSelector = (state: RootState, q: string) => state.weather.value[q]
-export const weatherErrorSelector = (state: RootState, q: string) => state.weather.error[q]
+export const isLoadingSelector = (state, q) => state.weather.isLoading[q];
+export const weatherDataSelector = (state, q) => state.weather.value[q]
+export const weatherErrorSelector = (state, q) => state.weather.error[q]
 
 export default weatherSlice.reducer;

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-//import App_redux from './App_redux';
+//import App from './App';
+import App_redux from './App_redux';
 import reportWebVitals from './reportWebVitals';
 import {store} from "./state/store";
 import {Provider} from "react-redux";
@@ -12,7 +12,7 @@ root.render(
 
   <React.StrictMode>
       <Provider store={store}>
-          <App/>
+          <App_redux/>
       </Provider>
   </React.StrictMode>
 );
