@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import React, {useEffect, useRef, useState} from 'react';
 import {useSelector} from "react-redux";
-
-
+import snowflake from "./img/snowflake.png"
+import waterDrop from "./img/waterDrop.png"
+import pressure from "./img/pressure.png"
 const HoursContainer = styled.div`
   display: flex;
 
@@ -64,7 +65,7 @@ export const HourlyForecast = ({data}) => {
     // console.log(data)
     const [isPressure, setIsPressure] = useState(false);
     const [isWindKph, setIsWindKph] = useState(false);
-    const forecastParams = useSelector((state) => state?.forecastParams)
+    const forecastParams = useSelector((state) => state.forecastParams)
 
     let currentHour = parseInt(data.current.last_updated.substring(11, 13))
 
@@ -82,12 +83,12 @@ export const HourlyForecast = ({data}) => {
 
     return (
         <HoursWidget>
-            <ItemsSelector>
+            {/*<ItemsSelector>
                 <div>Атмосферний тиск:<input type="checkbox" name="Pressure_in"
                                              onChange={(e) => checkValue(e, setIsPressure)}/></div>
                 <div>Швидкість вітру:<input type="checkbox" name="Pressure_in"
                                             onChange={(e) => checkValue(e, setIsWindKph)}/></div>
-            </ItemsSelector>
+            </ItemsSelector>*/}
             <HoursContainer>
                 {filteredData.map((item, index) => (
                     <HoursItems key={index} className="item" colorValue={item.cloud}>
@@ -99,13 +100,22 @@ export const HourlyForecast = ({data}) => {
 
                         <div>{item.condition.text}</div>
                         <div>{item.last_updated}</div>
-                        <div>{item.humidity}%</div>
-                        {isPressure && <>
-                            <div>а.т.{item.pressure_in}</div>
+                        <div>
+                            <img src={waterDrop} style={{ width: '10px' }}/>
+                            {item.humidity}%
+                        </div>
+                        {forecastParams.isPressure && <>
+                            <div><img src={pressure} style={{ width: '10px' }}/>
+                                {item.pressure_mb}</div>
                         </>}
                         {isWindKph && <>
                             <div>шв{item.wind_kph}</div>
                         </>}
+                        { forecastParams.isChanceOfSnow && <div>
+                            <img src={snowflake} style={{ width: '10px' }}/>
+                            {item.chance_of_snow}%</div>
+
+                        }
 
                     </HoursItems>
                 ))}

@@ -4,7 +4,10 @@ import {getDashboard, getUserInfo} from "../DBcalls/DBcalls";
 
 const initialState = {
     isPressure: false,
-    isWind: false/*
+    isWind: false,
+    isChanceOfSnow: false
+
+    /*
     userInfo
     */
     /*latitude: '',
@@ -22,6 +25,9 @@ export const forecastParamsSlice = createSlice({
         changeIsWind: (state) => {
             state.isWind = state.isWind === false;
         },
+        changeIsChanceOfSnow: (state) => {
+            state.isChanceOfSnow = state.isChanceOfSnow === false;
+        }
 
     },
     /* extraReducers: (builder) => { //зв'язатися з дб і отримати дані
@@ -44,6 +50,6 @@ export const forecastParamsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {changeIsPressure, changeIsWind} = forecastParamsSlice.actions
+export const {changeIsPressure, changeIsWind, changeIsChanceOfSnow} = forecastParamsSlice.actions
 
 export default forecastParamsSlice.reducer

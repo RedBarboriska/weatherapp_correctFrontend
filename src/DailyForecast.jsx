@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React from 'react';
 import formatDate from "./FormatDate";
+import snowflake from "./img/snowflake.png";
+import {useSelector} from "react-redux";
 
 const DaysContainer = styled.div`
   display: flex;
@@ -22,7 +24,7 @@ const DayItems = styled.div`
 
 export const DailyForecast = ({weatherData}) => {
     console.log(weatherData)
-
+    const forecastParams = useSelector((state) => state.forecastParams)
     const filteredArray = weatherData.forecast.forecastday.slice(1); // creates a new array containing the last two objects
 
     console.log(filteredArray); // Output: [{id: 2, name: 'Object 2'}, {id: 3, name: 'Object 3'}]
@@ -39,9 +41,14 @@ export const DailyForecast = ({weatherData}) => {
                     </div>
 
                     <div>{item.day.condition.text}</div>
+
                     <div>Макс: {item.day.maxtemp_c}°C</div>
                     <div>Мін: {item.day.mintemp_c}°C</div>
+                   {/* { forecastParams.isChanceOfSnow && <div>
+                        <img src={snowflake} style={{ width: '10px' }}/>
+                        {item.day.daily_chance_of_snow}%</div>
 
+                    }*/}
 
                 </DayItems>
             ))}

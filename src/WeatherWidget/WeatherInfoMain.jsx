@@ -8,11 +8,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {addCity, removeCity, signUp} from "../DBcalls/DBcalls";
 import {HourlyForecast} from "../HourlyForecast";
 import {DailyForecast} from "../DailyForecast";
+import {changeIsChanceOfSnow, changeIsPressure} from "../state/forecastParams.slice";
 
+const ForecastParamsWrapper = styled.div`
+  width: 100%;
+  background-color: #E2F1FD;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  padding-left: 10px;//вилазить!!!
+ 
+  padding-bottom: 5px;
 
+`
 
 const WeatherInfoMain = ({weatherData}) => {
-
+    const forecastParams = useSelector((state) => state.forecastParams)
    // const user = useSelector((state) => state.user)
     const geolocation = useSelector((state) => state.geolocation)
     const dispatch = useDispatch()
@@ -74,6 +85,15 @@ const WeatherInfoMain = ({weatherData}) => {
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>
+            <ForecastParamsWrapper>
+                Атмосферний тиск:<input type="checkbox" name="at"
+                                  onChange={() => dispatch(changeIsPressure())}
+                                  checked={forecastParams.isPressure === true}/>
+                Шанс снігу:<input type="checkbox" name="isSnow"
+                                                     onChange={() => dispatch(changeIsChanceOfSnow())}
+                                                     checked={forecastParams.isChanceOfSnow === true}/>
+
+            </ForecastParamsWrapper>
           <HourlyForecast data={weatherData}/>
 
         </div>
