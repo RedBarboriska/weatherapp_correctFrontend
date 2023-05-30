@@ -12,6 +12,7 @@ import SigningForm from "./SigningForm";
 import ReactDOM from "react-dom";
 import {userSignOut} from "../state/user.slice";
 import React, {useState} from "react";
+import {setInitialMap} from "../Map/maphelp";
 
 const Header = () => {
     const [city, setCity] = useState('');
@@ -55,14 +56,16 @@ const Header = () => {
             </div>
             {showMapModal &&
                 ReactDOM.createPortal(<MapModal
-                    defaultLocation={
+                    defaultLocation={weatherData?.location?.lat
+                        ? { latitude: weatherData.location.lat, longitude: weatherData.location.lon }
+                        : { latitude: "50.44989086706778", longitude: "30.524897236099616" }}
 
-                    {latitude: weatherData.location.lat, longitude: weatherData.location.lon}
-                }
                     onClose={(data) => {
-                        dispatch(changeCoords(data)) //під питанням
+                        if (data){
+                        dispatch(changeCoords(data))} //під питанням
                         //setLocation(data)
                         setShowMapModal(false)
+                        setInitialMap(null)
                     }}/>, document.body)}
            {/* {showSigningForm &&
                 ReactDOM.createPortal(<SigningForm onClose={setShowSigningForm(false)}/>, document.body)}
