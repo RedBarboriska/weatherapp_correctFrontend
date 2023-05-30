@@ -49,7 +49,11 @@ const Header = () => {
                            onChange={(e) => setCity(e.target.value)}/>
 
                       <input className="searchButton" type="submit" value="Пошук"
-                           onClick={() => dispatch(changeCityname(city))}/>
+                           onClick={() => {
+                               if (city !== "") {
+                                   dispatch(changeCityname(city));
+                               }
+                           }}/>
 
                      <input className="searchButton" type="submit" value="Карта" onClick={() =>setShowMapModal(true)}/>
 
