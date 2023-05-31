@@ -3,9 +3,9 @@ import {fetchCurrentWeatherAsync} from "./weather.slice";
 import {getDashboard, getUserInfo} from "../DBcalls/DBcalls";
 
 const initialState = {
-    isPressure: false,
+    isPressure: JSON.parse(localStorage.getItem('isPressure')) || false,
     isWind: false,
-    isChanceOfSnow: false
+    isChanceOfSnow: JSON.parse(localStorage.getItem('isChanceOfSnow')) || false
 
     /*
     userInfo

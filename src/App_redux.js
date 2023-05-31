@@ -28,9 +28,15 @@ function App_redux() {
     const [nextId, setNextId] = useState(0)
     const [widgets, setWidgets] = useState([{id: nextId}])
     const isLogged = useSelector((state) => state.user.isLogged)
+    //localStorage.setItem('isLogged', JSON.stringify(true))
+    //const retrievedValue = JSON.parse(localStorage.getItem('key'))
+
+
 
     return (
         <AppWrapper>
+
+
             <Header/>
             <WeatherWidget/>
             {/*<Header/>

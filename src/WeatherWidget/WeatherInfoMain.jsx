@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import formatDate from "../FormatDate";
 //import {DailyForecast} from "../DailyForecast";
@@ -9,6 +9,7 @@ import {addCity, removeCity, signUp} from "../DBcalls/DBcalls";
 import {HourlyForecast} from "../HourlyForecast";
 import {DailyForecast} from "../DailyForecast";
 import {changeIsChanceOfSnow, changeIsPressure} from "../state/forecastParams.slice";
+
 
 const ForecastParamsWrapper = styled.div`
   width: 100%;
@@ -23,10 +24,17 @@ const ForecastParamsWrapper = styled.div`
 `
 
 const WeatherInfoMain = ({weatherData}) => {
+
     const forecastParams = useSelector((state) => state.forecastParams)
    // const user = useSelector((state) => state.user)
     const geolocation = useSelector((state) => state.geolocation)
+
     const dispatch = useDispatch()
+    useEffect(() => {
+       // if(forecastParams.isPressure){
+        //
+       // }
+    })
 /*    const isCityPresent = user.dashboardInfo.some(
         city =>
             (city.cityName === data.location.name &&
@@ -87,11 +95,27 @@ const WeatherInfoMain = ({weatherData}) => {
             </div>
             <ForecastParamsWrapper>
                 Атмосферний тиск:<input type="checkbox" name="at"
-                                  onChange={() => dispatch(changeIsPressure())}
-                                  checked={forecastParams.isPressure === true}/>
+                                  onChange={() => {
+                                      dispatch(changeIsPressure())
+                                      if (JSON.parse(localStorage.getItem('isPressure'))) {
+                                          localStorage.setItem('isPressure', JSON.stringify(false));
+                                      } else {
+                                          localStorage.setItem('isPressure', JSON.stringify(true));
+                                      }
+// dispatch(changeIsPressure())
+                                  }}
+                                  checked={JSON.parse(localStorage.getItem('isPressure')) === true}/>
                 Шанс снігу:<input type="checkbox" name="isSnow"
-                                                     onChange={() => dispatch(changeIsChanceOfSnow())}
-                                                     checked={forecastParams.isChanceOfSnow === true}/>
+                                                     onChange={() =>{ dispatch(changeIsChanceOfSnow())
+                                                         if (JSON.parse(localStorage.getItem('isChanceOfSnow'))) {
+                                                             localStorage.setItem('isChanceOfSnow', JSON.stringify(false));
+                                                         } else {
+                                                             localStorage.setItem('isChanceOfSnow', JSON.stringify(true));
+                                                         }
+                                                     }
+
+                }
+                                                     checked={JSON.parse(localStorage.getItem('isChanceOfSnow')) === true}/>
 
             </ForecastParamsWrapper>
           <HourlyForecast data={weatherData}/>
@@ -100,6 +124,7 @@ const WeatherInfoMain = ({weatherData}) => {
 
     )
 }
-
+//localStorage.setItem('isLogged', JSON.stringify(true))
+//const retrievedValue = JSON.parse(localStorage.getItem('key'))
 
 export default WeatherInfoMain;

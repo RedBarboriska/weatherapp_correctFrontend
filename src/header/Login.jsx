@@ -39,23 +39,22 @@ const Login = () => {
             <input type="submit" onClick={async () =>  signIn(login, password).then(response => {
                 console.log(response)
                 if (response.success) {
-                    dispatch(userSignIn({login: login, token: response.token}))
-
-                    getUserInfo(response.token) // Send another request to get user information
+                    dispatch(userSignIn({ token: response.token}))
+                    getUserInfo(response.token)
                         .then(userInfoResponse => {
-                            dispatch(setUserInfo(userInfoResponse)) // Dispatch the user information to the store
+                            dispatch(setUserInfo(userInfoResponse))
                         })
                         .catch(error => {
                             console.log(error)
-                            // Handle error if user information retrieval fails
+
                         })
-                    getDashboard(response.token) // Send another request to get user information
+                    getDashboard(response.token)
                         .then(dashboardResponse => {
-                            dispatch(setDashboard(dashboardResponse)) // Dispatch the user information to the store
+                            dispatch(setDashboard(dashboardResponse))
                         })
                         .catch(error => {
                             console.log(error)
-                            // Handle error if user information retrieval fails
+
                         })
 
 
