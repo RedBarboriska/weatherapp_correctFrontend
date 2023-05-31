@@ -33,7 +33,6 @@ export const signUp = async (login, password, name) => {
 }
 
 export const getUserInfo = async (token) => {
-    try {
         const response = await axios.post('http://localhost:5000/api/me', {}, {
             headers: {
                 'Authorization': token
@@ -45,12 +44,7 @@ export const getUserInfo = async (token) => {
         // setLoginData(response.data);
         // setIsLogged(true);
         // console.log(isLogged);
-    } catch (error) {
-        console.log(error);
-        console.log({success: false, message: error.response.data.errors.message})
-        return  {success: false, message: error.response.data.errors.message};
-    }
-  /*  axios.post('http://localhost:5000/api/me', {}, {
+     /*  axios.post('http://localhost:5000/api/me', {}, {
         headers: {
             'Authorization': token
         }

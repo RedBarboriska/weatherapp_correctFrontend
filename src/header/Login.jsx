@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {getDashboard, getUserInfo, signIn} from "../DBcalls/DBcalls";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {setUserInfo, userSignIn} from "../state/user.slice";
+import {setDashboard, setUserInfo, userSignIn} from "../state/user.slice";
 
 const LoginWrapper = styled.div`
   position: absolute;
@@ -50,8 +50,8 @@ const Login = () => {
                             // Handle error if user information retrieval fails
                         })
                     getDashboard(response.token) // Send another request to get user information
-                        .then(userInfoResponse => {
-                            dispatch(setUserInfo(userInfoResponse)) // Dispatch the user information to the store
+                        .then(dashboardResponse => {
+                            dispatch(setDashboard(dashboardResponse)) // Dispatch the user information to the store
                         })
                         .catch(error => {
                             console.log(error)
