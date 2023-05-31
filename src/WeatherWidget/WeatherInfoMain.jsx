@@ -9,6 +9,7 @@ import {addCity, removeCity, signUp} from "../DBcalls/DBcalls";
 import {HourlyForecast} from "../HourlyForecast";
 import {DailyForecast} from "../DailyForecast";
 import {changeIsChanceOfSnow, changeIsPressure} from "../state/forecastParams.slice";
+import AddOrRemove from "./AddOrRemove";
 
 
 const ForecastParamsWrapper = styled.div`
@@ -26,7 +27,7 @@ const ForecastParamsWrapper = styled.div`
 const WeatherInfoMain = ({weatherData}) => {
 
     const forecastParams = useSelector((state) => state.forecastParams)
-   // const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.user)
     const geolocation = useSelector((state) => state.geolocation)
 
     const dispatch = useDispatch()
@@ -57,7 +58,9 @@ const WeatherInfoMain = ({weatherData}) => {
             <div className="test">
                 <div className="wigetCityDiv">
                     <div className="wigetCityName">{weatherData?.location.name}</div>
-                    <div className="wigetCityReg">{weatherData?.location.region}, {weatherData?.location.country}</div>
+                    <div className="wigetCityReg">{weatherData?.location.region}, {weatherData?.location.country} </div>
+                    <div className="AddOrRemove">{user.isLogged&&<AddOrRemove/>}</div>
+
                   {/*  {user.isLogged && <>
                         {isCityPresent ? (
                             <input type="submit"

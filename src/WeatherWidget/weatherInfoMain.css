@@ -84,6 +84,7 @@
 }
 
 .wigetCityDiv {
+    position: relative;
     display: flex;
     flex-direction: row; /* Add this line */
     flex: 1;
@@ -94,7 +95,12 @@
     /* background-color: rgb(129, 131, 192);*/
     color: #4463AE;
 }
+.AddOrRemove{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 
+}
 .wigetCityName {
     text-align: left;
     padding: 10px;

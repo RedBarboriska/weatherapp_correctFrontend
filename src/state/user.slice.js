@@ -5,8 +5,8 @@ import {getDashboard, getUserInfo} from "../DBcalls/DBcalls";
 const initialState = {
     isLogged: false,
     token: "",
-    userInfo: {},
-    dashboardInfo: {}
+    userInfo: {},//name?
+    dashboardInfo: []
 };
 
 export const userSlice = createSlice({

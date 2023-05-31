@@ -87,6 +87,7 @@ export const getDashboard = async (token) => {
     });
     console.log("response.data");
     console.log(response.data);
+    console.log(response.data.cities);
     return  {data: response.data.cities};
 }
 

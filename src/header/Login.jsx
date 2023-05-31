@@ -50,6 +50,8 @@ const Login = () => {
                         })
                     getDashboard(response.token)
                         .then(dashboardResponse => {
+                            console.log("dashboardResponse")
+                            console.log(dashboardResponse)
                             dispatch(setDashboard(dashboardResponse))
                         })
                         .catch(error => {
