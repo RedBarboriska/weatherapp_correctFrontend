@@ -22,14 +22,18 @@ export const signIn = async (login, password) => {
 };
 
 export const signUp = async (login, password, name) => {
-    axios.post('http://localhost:5000/api/sign-up', {login, password, name})
-        .then(response => {
-            console.log(response.data);
-            //null
-        })
-        .catch(error => {
-            console.error(error);
-        });
+
+    try {
+        const response = await axios.post('http://localhost:5000/api/sign-up', {login, password, name});
+        console.log(response.data.message);
+        return {success: true, message: response.data.message};
+
+    } catch (error) {
+        console.log(error);
+        console.log({success: false, message: error.response.data.message})
+        return  {success: false, message: error.response.data.message};
+    }
+
 }
 
 export const getUserInfo = async (token) => {
@@ -83,7 +87,7 @@ export const getDashboard = async (token) => {
     });
     console.log("response.data");
     console.log(response.data);
-    return  {data: response.data};
+    return  {data: response.data.cities};
 }
 
 

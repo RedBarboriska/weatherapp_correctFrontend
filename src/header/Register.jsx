@@ -18,6 +18,8 @@ const Register = () => {
     const [login, setLogin] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const [showMessageBox, setShowMessageBox] = useState(false)
+    const [message, setMessage] = useState('')
 
     return (
 
@@ -36,8 +38,15 @@ const Register = () => {
                 <input type="password" placeholder="Введіть пароль" name="psw" value={password}
                        onChange={(e) => setPassword(e.target.value)} required/>
             </div>
-            <input type="submit" onClick={async () => await signUp(login, password, name)} value="Зареэструватися"/>
+            <input type="submit" onClick={async () =>await signUp(login, password, name).then(response => {
+                console.log(response)
+                setMessage(response.message)
+                setShowMessageBox(true)
+            })
 
+            } value="Зареэструватися"/>
+            {showMessageBox &&
+                <div>{message}</div>}
         </div>
 
     );

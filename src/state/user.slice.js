@@ -22,6 +22,7 @@ export const userSlice = createSlice({
         },
         userSignOut: (state) => {
             state.isLogged = false
+            state.token = ""
             state.userInfo = {}
             state.dashboardInfo = {}
         },
