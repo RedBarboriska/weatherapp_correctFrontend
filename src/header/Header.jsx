@@ -59,7 +59,7 @@ const Header = () => {
 
                 </div>
 
-                {/*{user.isLogged & <div className="login" onClick={dispatch(userSignOut())}>Вийти</div>}*/}
+                {user.isLogged && <div className="login" onClick={() =>dispatch(userSignOut())}>Вийти</div>}
                 {!user.isLogged &&
 
                     <div className="login" onClick={() =>setShowSigningForm(true)}>

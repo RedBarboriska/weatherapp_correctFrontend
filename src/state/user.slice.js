@@ -4,6 +4,7 @@ import {getDashboard, getUserInfo} from "../DBcalls/DBcalls";
 
 const initialState = {
     isLogged: false,
+    token: "",
     userInfo: {},
     dashboardInfo: {}
 };
@@ -14,8 +15,10 @@ export const userSlice = createSlice({
     reducers: {
         userSignIn: (state, action) => {
             state.isLogged = true
-            state.userInfo = getUserInfo(action)//login
-            state.dashboardInfo = getDashboard(action)//login
+            state.token = action.payload.token
+            console.log(action.payload.token)
+            //state.userInfo = getUserInfo(action.payload.token)//login
+            //state.dashboardInfo = getDashboard(action)//login
         },
         userSignOut: (state) => {
             state.isLogged = false

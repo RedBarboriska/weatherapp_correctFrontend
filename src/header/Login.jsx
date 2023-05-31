@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {signIn} from "../DBcalls/DBcalls";
+import {getDashboard, getUserInfo, signIn} from "../DBcalls/DBcalls";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {userSignIn} from "../state/user.slice";
+import {setUserInfo, userSignIn} from "../state/user.slice";
 
 const LoginWrapper = styled.div`
   position: absolute;
@@ -19,6 +19,8 @@ const LoginWrapper = styled.div`
 const Login = () => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
+    const [showMessageBox, setShowMessageBox] = useState(false)
+    const [message, setMessage] = useState('')
     const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
     return (
@@ -34,19 +36,52 @@ const Login = () => {
                 <input type="password" placeholder="Введіть пароль" name="psw" value={password}
                        onChange={(e) => setPassword(e.target.value)} required/>
             </div>
-            <input type="submit" onClick={async () => await signIn(login, password).then((data) => {
-                if (data.status === 200) {
-                    dispatch(userSignIn(login))
-                } else {
+            <input type="submit" onClick={async () =>  signIn(login, password).then(response => {
+                console.log(response)
+                if (response.success) {
+                    dispatch(userSignIn({login: login, token: response.token}))
 
+                    getUserInfo(response.token) // Send another request to get user information
+                        .then(userInfoResponse => {
+                            dispatch(setUserInfo(userInfoResponse)) // Dispatch the user information to the store
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            // Handle error if user information retrieval fails
+                        })
+                    getDashboard(response.token) // Send another request to get user information
+                        .then(userInfoResponse => {
+                            dispatch(setUserInfo(userInfoResponse)) // Dispatch the user information to the store
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            // Handle error if user information retrieval fails
+                        })
+
+
+                } else {
+                    console.log(response.message)
+                    setMessage(response.message)
+                    setShowMessageBox(true)
                     //вивести користувачу response.message
                 }
 
             })} value="Увійти"/>
-
+            {showMessageBox &&
+                <div>{message}</div>}
         </div>
 
     );
 };
 
 export default Login;
+/*{async () =>  signIn(login, password).then(response => {
+                console.log(response)
+                if (response.status === 200) {
+                    dispatch(userSignIn(login))
+                } else {
+                    console.log(response.message)
+                    //вивести користувачу response.message
+                }
+
+            })}*/

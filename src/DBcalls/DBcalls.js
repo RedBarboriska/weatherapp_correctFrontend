@@ -7,21 +7,19 @@ import {useDispatch} from "react-redux";
 
 const dispatch = useDispatch
 export const signIn = async (login, password) => {
-    axios.post('http://localhost:5000/api/sign-in', {login, password})
-        .then(response => {
-            console.log(response);
-
-            return response.data
-            // setLoginData(response.data)
-            // setIsLogged(true)
-            //console.log(isLogged)
-
-        })
-        .catch(error => {
-            console.error(error);
-            return error
-        });
-}
+    try {
+        const response = await axios.post('http://localhost:5000/api/sign-in', {login, password});
+        console.log(response);
+        return {success: true, token: response.data.token};
+        // setLoginData(response.data);
+        // setIsLogged(true);
+        // console.log(isLogged);
+    } catch (error) {
+        console.log(error);
+        console.log({success: false, message: error.response.data.errors.message})
+        return  {success: false, message: error.response.data.errors.message};
+    }
+};
 
 export const signUp = async (login, password, name) => {
     axios.post('http://localhost:5000/api/sign-up', {login, password, name})
@@ -34,7 +32,42 @@ export const signUp = async (login, password, name) => {
         });
 }
 
-export const getUserInfo = async (login) => {
+export const getUserInfo = async (token) => {
+    try {
+        const response = await axios.post('http://localhost:5000/api/me', {}, {
+            headers: {
+                'Authorization': token
+            }
+        });
+        console.log("response.data");
+        console.log(response.data);
+        return  {data: response.data};
+        // setLoginData(response.data);
+        // setIsLogged(true);
+        // console.log(isLogged);
+    } catch (error) {
+        console.log(error);
+        console.log({success: false, message: error.response.data.errors.message})
+        return  {success: false, message: error.response.data.errors.message};
+    }
+  /*  axios.post('http://localhost:5000/api/me', {}, {
+        headers: {
+            'Authorization': token
+        }
+    })
+        .then(response => {
+            console.log(response.data);
+            /!*if (response.status === 200) {
+                dispatch(setUserInfo(response.data))
+            }
+            //null*!/
+        })
+        .catch(error => {
+            console.error(error);
+        });*/
+}
+
+/*export const getUserInfo = async (login) => {
     axios.post('http://localhost:5000/api/me', {login})
         .then(response => {
             console.log(response.data);
@@ -46,8 +79,21 @@ export const getUserInfo = async (login) => {
         .catch(error => {
             console.error(error);
         });
+}*/
+
+export const getDashboard = async (token) => {
+    const response = await axios.post('http://localhost:5000/api/mydashboard', {}, {
+        headers: {
+            'Authorization': token
+        }
+    });
+    console.log("response.data");
+    console.log(response.data);
+    return  {data: response.data};
 }
 
+
+/*
 export const getDashboard = async (login) => {
     axios.post('http://localhost:5000/api/mydashboard', {login})
         .then(response => {
@@ -61,6 +107,7 @@ export const getDashboard = async (login) => {
             console.error(error);
         });
 }
+*/
 
 export const addCity = async (login, cityName, cityRegion, cityCountry, latitude, longitude) => {
     axios.post('http://localhost:5000/api/addcity', {login, cityName, cityRegion, cityCountry, latitude, longitude})
