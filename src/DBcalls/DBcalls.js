@@ -108,28 +108,34 @@ export const getDashboard = async (login) => {
 }
 */
 
-export const addCity = async (login, cityName, cityRegion, cityCountry, latitude, longitude) => {
-    axios.post('http://localhost:5000/api/addcity', {login, cityName, cityRegion, cityCountry, latitude, longitude})
-        .then(response => {
-            console.log(response.data);
-            if (response.status === 200) {
-                getUserInfo(login)
+export const addCity = async (token, cityName, cityRegion, cityCountry, latitude, longitude) => {
+    try {
+         await axios.post('http://localhost:5000/api/addcity', { cityName, cityRegion, cityCountry, latitude, longitude},{
+            headers: {
+                'Authorization': token
             }
         })
-        .catch(error => {
-            console.error(error);
-        });
+        return {success: true}}
+    catch (error) {
+        console.log(error);
+        console.log({success: false})
+        return  {success: false};
+    }
+
 }
 
-export const removeCity = async (login, cityName, cityRegion, cityCountry) => {
-    axios.post('http://localhost:5000/api/removecity', {login, cityName, cityRegion, cityCountry})
-        .then(response => {
-            console.log(response.data);
-            if (response.status === 200) {
-                getUserInfo(login)
+export const removeCity = async (token, cityName, cityRegion, cityCountry) => {
+
+    try {
+         await  axios.post('http://localhost:5000/api/removecity', { cityName, cityRegion, cityCountry},{
+            headers: {
+                'Authorization': token
             }
         })
-        .catch(error => {
-            console.error(error);
-        });
+        return {success: true}}
+    catch (error) {
+        console.log(error);
+        console.log({success: false})
+        return  {success: false};
+    }
 }

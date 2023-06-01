@@ -24,10 +24,10 @@ const Header = () => {
     const dispatch = useDispatch()
     const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual) //location.latitude, location.longitude
     const user = useSelector((state) => state.user)
-    console.log(weatherData?.location?.lat)
+    /*console.log(weatherData?.location?.lat)
     console.log(geolocation)
     console.log(geolocation.latitude)
-    console.log(geolocation.longitude)
+    console.log(geolocation.longitude)*/
     /*  const onCloseHandler = useCallback(() => {
           onClose(selectedPoint);
       }, [onClose, selectedPoint]);*/

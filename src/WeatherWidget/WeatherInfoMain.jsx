@@ -59,7 +59,7 @@ const WeatherInfoMain = ({weatherData}) => {
                 <div className="wigetCityDiv">
                     <div className="wigetCityName">{weatherData?.location.name}</div>
                     <div className="wigetCityReg">{weatherData?.location.region}, {weatherData?.location.country} </div>
-                    <div className="AddOrRemove">{user.isLogged&&<AddOrRemove/>}</div>
+                    <div className="AddOrRemove">{user.isLogged&&<AddOrRemove weatherData={weatherData}/>}</div>
 
                   {/*  {user.isLogged && <>
                         {isCityPresent ? (
