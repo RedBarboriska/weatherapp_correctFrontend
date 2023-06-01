@@ -137,7 +137,7 @@ function App() {
 
         <div className="App-header">
             <div className="logo">Погодниця</div>
-            <div className="myCities">Мої міста</div>
+            {/*<div className="myCities">Мої міста</div>*/}
 
             <div className="searchInput">
                 <input className="searchBar" type="text"

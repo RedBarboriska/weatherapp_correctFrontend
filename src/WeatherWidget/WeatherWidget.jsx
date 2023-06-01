@@ -31,6 +31,7 @@ const WeatherWidget = () => {
     const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
     const isLoading = useSelector(state => isLoadingSelector(state, getDataKey(location)), shallowEqual)
     const error = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
+    //const user = useSelector((state) => state.user)
     //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
 console.log(weatherData, location)
     if (weatherData && !weatherData?.error?.message){
@@ -54,17 +55,28 @@ console.log(weatherData, location)
             }
             else {
                 getLocationQuery(q => {
-                   // console.log(q)
-                    //перевірити що повертає
+                    console.log(q)
+                    //console.log("user.dashboardInfo")
+                    //console.log(user.dashboardInfo)
+                   /* if (q.error&&user.dashboardInfo.length!==0){
+                        dispatch(changeCoords({latitude: user.dashboardInfo[0]?.latitude, longitude: user.dashboardInfo[0]?.longitude}))
+                    }else{
+                        dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
+                    }*/
                     dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
-                   // console.log(location)
+
+                    //dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
+                    console.log(q)
+                    //перевірити що повертає
+                    //dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
+                    console.log(location)
                     if (!q.error) {
-                      //  console.log(q)
+                        console.log(q)
                         dispatch(setGeolocation({latitude: q.latitude, longitude: q.longitude}))
                     }else{
-                       // console.log(q)
+                        console.log(q)
                         setGeolocationError(true)
-                       // console.log(geolocationError)
+                        console.log(geolocationError)
                     }
 
                 })

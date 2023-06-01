@@ -43,9 +43,9 @@ const Header = () => {
     return (<>
             <div className="App-header">
                 <div className="logo">Погодниця</div>
-                {user.isLogged && <div className="myCities" onClick={()=>{
+                {/*user.isLogged && <div className="myCities" onClick={()=>{
                     console.log("клік")
-                    dispatch(showMyCities())}}>Мої міста</div>}
+                    dispatch(showMyCities())}}>Мої міста</div>*/}
 
                 <div className="searchInput">
 

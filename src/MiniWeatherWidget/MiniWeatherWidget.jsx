@@ -10,6 +10,7 @@ import {
 import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
 import MiniWeatherWidgetInfo from "./MiniWeatherWidgetInfo";
 import styled from "styled-components";
+import {changeCoords} from "../state/location.slice";
 //дістає дані про міста в дашборді??? - ✔
 //запускає цикл по цим містам і виводить кожне (а як їхню погоду знайти???) \(Т-Т)/ на location теж поставити список як weather?
 //якщо геолокація(місто в головному віджеті) і місто в дашборді співпадають, то його не виводять
@@ -19,13 +20,13 @@ import styled from "styled-components";
 
 const MiniWeatherWidgetWrapper = styled.div`
   width: 100%;
-  background-color: #E2F1FD;
+  //background-color: #E2F1FD;
   display: flex;
   flex-direction: row;
   text-align: left;
-  padding-left: 10px;//вилазить!!!
- 
-  padding-bottom: 5px;
+  //padding-left: 10px;
+  //padding-bottom: 5px;
+  
 
 `
 
@@ -41,6 +42,7 @@ const MiniWeatherWidget = (onClick) => {
         longitude: city.longitude,
     }));
     const searchedCity = useSelector((state) => state.searchedCity)
+
 
     //`${location?.latitude},${location?.longitude}`
     //const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
@@ -58,16 +60,20 @@ const MiniWeatherWidget = (onClick) => {
                       )
                 .map((city, index) => {
                // const city = item;
-                    console.log("CITY")
-                    console.log(index)
-                    console.log(city)
-                    //console.log(city.city)
-                //відфільтрувати список, щоб тут не було геолокації і шуканого міста і потім відправити
+                   // console.log("CITY")
+                   // console.log(index)
+                   // console.log(city)
+                   // console.log(city.city)
+
                 console.log(city)
                 return (
+
                     <MiniWeatherWidgetInfo
-                        key={index}
-                        city={city}/>
+                        key={`${city.cityName}${city.latitude}${city.longitude}`}
+                        city={city}
+
+                    />
+
                 );
             })}
         </MiniWeatherWidgetWrapper>

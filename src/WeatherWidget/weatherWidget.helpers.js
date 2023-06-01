@@ -7,7 +7,6 @@ import {useDispatch} from "react-redux";
 export const getLocationQuery = (callback) => {
     navigator.geolocation.getCurrentPosition(
         pos => {
-           // dispatch(setGeolocation(pos.coords))
             callback(pos.coords);
         },
         e => {//перевірити що повертає

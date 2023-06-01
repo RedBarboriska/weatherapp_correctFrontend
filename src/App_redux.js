@@ -38,11 +38,10 @@ function App_redux() {
             <Header/>
 
             <WeatherWidget/>
-            {user.isLogged && user.dashboardInfo&&<>
+            {user.isLogged && user.dashboardInfo&&
 
-                Міні віджет!
             <MiniWeatherWidget/>
-            </>
+
             }
             {/*<Header/>
             <WeatherWidget/>

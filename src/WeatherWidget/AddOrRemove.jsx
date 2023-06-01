@@ -42,7 +42,9 @@ const AddOrRemove = ({weatherData}) => {
 
             <img src={minus} style={{ width: '30px', filter: 'brightness(0) saturate(100%) hue-rotate(120deg)' } }
                  onClick = {
-                     ()=>{console.log("клік")
+                     (event)=>{
+                         event.stopPropagation()
+                         console.log("клік")
                          removeCity(
                              user.token,
                              weatherData.location.name,
@@ -63,7 +65,9 @@ const AddOrRemove = ({weatherData}) => {
         {!isCityPresent && <img src={plus} style={{ width: '30px', filter: 'hue-rotate(120deg)' }}
 
                                 onClick = {
-                                    ()=>{console.log("клік")
+                                    (event)=>{
+                                        event.stopPropagation()
+                                        console.log("клік")
                                         addCity(user.token,
                                             weatherData.location.name,
                                             weatherData.location.region,

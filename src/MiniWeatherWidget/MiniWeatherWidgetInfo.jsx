@@ -9,13 +9,14 @@ import {
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from 'react';
 import AddOrRemove from "../WeatherWidget/AddOrRemove";
+import {changeCityname, changeCoords} from "../state/location.slice";
 
 const MiniWeatherWidgetInfo = (city) => {
     const dispatch=useDispatch()
     //console.log(city)
     //console.log(city.city)
     const [location, setLocation] = useState(`${city.city.latitude},${city.city.longitude}`)
-
+    const [isSearchByName, setIsSearchByName] = useState(false)
     //const location = `${city.city.latitude},${city.city.longitude}`
 
 
@@ -29,7 +30,7 @@ const MiniWeatherWidgetInfo = (city) => {
         console.log(weatherData.location.name)
         console.log(city.city.cityName)
         console.log(location)
-
+        setIsSearchByName(true)
         setLocation(`${city.city.cityName}`)
     }
     console.log("WEATHER DATA")
@@ -43,8 +44,23 @@ const MiniWeatherWidgetInfo = (city) => {
 
         {/*//віджет {city.city.cityName}*/}
         {!isLoading && weatherData && !error &&
-        <>
-        <div className="miniWeatherWidget">
+
+
+        <div className="miniWeatherWidget"
+             onClick={()=>{
+                 if(isSearchByName){
+                     console.log("CITY NAME")
+                     console.log(city.city.cityName)
+                     dispatch(changeCityname(city.city.cityName))
+                 }else {
+                     console.log("COORDS")
+                     dispatch(changeCoords({latitude: city.city.latitude, longitude: city.city.longitude}))
+                 }
+             }
+
+        }
+
+        >
             <AddOrRemove weatherData={weatherData} />
             <div className="cityName">{weatherData?.location.name}</div>
             <div className="regionName">{weatherData?.location?.region}</div>
@@ -65,7 +81,7 @@ const MiniWeatherWidgetInfo = (city) => {
             </div>
 
         </div>
-        </>}
+        }
     </>)
 
 }
