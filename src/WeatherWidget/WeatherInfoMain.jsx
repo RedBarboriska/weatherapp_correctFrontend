@@ -10,6 +10,7 @@ import {HourlyForecast} from "../HourlyForecast";
 import {DailyForecast} from "../DailyForecast";
 import {changeIsChanceOfSnow, changeIsPressure} from "../state/forecastParams.slice";
 import AddOrRemove from "./AddOrRemove";
+import {setSearchedCity} from "../state/searchedCity.slice";
 
 
 const ForecastParamsWrapper = styled.div`
@@ -31,6 +32,7 @@ const WeatherInfoMain = ({weatherData}) => {
     const geolocation = useSelector((state) => state.geolocation)
 
     const dispatch = useDispatch()
+
     useEffect(() => {
        // if(forecastParams.isPressure){
         //

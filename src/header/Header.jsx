@@ -13,6 +13,7 @@ import ReactDOM from "react-dom";
 import {userSignOut} from "../state/user.slice";
 import React, {useState} from "react";
 import {setInitialMap} from "../Map/maphelp";
+import {showMyCities} from "../state/myCities.slice";
 
 const Header = () => {
     const [city, setCity] = useState('');
@@ -24,6 +25,8 @@ const Header = () => {
     const dispatch = useDispatch()
     const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual) //location.latitude, location.longitude
     const user = useSelector((state) => state.user)
+    const myCities = useSelector((state) => state.myCities)
+
     /*console.log(weatherData?.location?.lat)
     console.log(geolocation)
     console.log(geolocation.latitude)
@@ -40,7 +43,9 @@ const Header = () => {
     return (<>
             <div className="App-header">
                 <div className="logo">Погодниця</div>
-                {user.isLogged && <div className="myCities">Мої міста</div>}
+                {user.isLogged && <div className="myCities" onClick={()=>{
+                    console.log("клік")
+                    dispatch(showMyCities())}}>Мої міста</div>}
 
                 <div className="searchInput">
 

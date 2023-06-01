@@ -24,7 +24,7 @@ export const userSlice = createSlice({
             state.isLogged = false
             state.token = ""
             state.userInfo = {}
-            state.dashboardInfo = {}
+            state.dashboardInfo = []
         },
         setUserInfo: (state, action) => {
             state.userInfo = action.payload.data

@@ -9,6 +9,7 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import WeatherWidget from "./WeatherWidget/WeatherWidget";
 import Header from "./header/Header";
+import MiniWeatherWidget from "./MiniWeatherWidget/MiniWeatherWidget";
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -27,18 +28,22 @@ function App_redux() {
 
     const [nextId, setNextId] = useState(0)
     const [widgets, setWidgets] = useState([{id: nextId}])
-    const isLogged = useSelector((state) => state.user.isLogged)
+    const user = useSelector((state) => state.user)
+    const myCities = useSelector((state) => state.myCities)
     //localStorage.setItem('isLogged', JSON.stringify(true))
     //const retrievedValue = JSON.parse(localStorage.getItem('key'))
 
-
-
     return (
         <AppWrapper>
-
-
             <Header/>
+
             <WeatherWidget/>
+            {user.isLogged && user.dashboardInfo&&<>
+
+                Міні віджет!
+            <MiniWeatherWidget/>
+            </>
+            }
             {/*<Header/>
             <WeatherWidget/>
 
