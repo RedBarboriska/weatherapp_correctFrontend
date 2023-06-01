@@ -13,6 +13,8 @@ import {changeCityname, changeCoords} from "../state/location.slice";
 
 const MiniWeatherWidgetInfo = (city) => {
     const dispatch=useDispatch()
+    console.log("isSelected")
+    console.log(city.isSelected)
     //console.log(city)
     //console.log(city.city)
     const [location, setLocation] = useState(`${city.city.latitude},${city.city.longitude}`)
@@ -47,6 +49,7 @@ const MiniWeatherWidgetInfo = (city) => {
 
 
         <div className="miniWeatherWidget"
+             style={{ backgroundColor: city.isSelected ? "#87b4f3" : "#E2F1FD" }}
              onClick={()=>{
                  if(isSearchByName){
                      console.log("CITY NAME")

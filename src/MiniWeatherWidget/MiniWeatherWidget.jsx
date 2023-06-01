@@ -11,6 +11,8 @@ import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
 import MiniWeatherWidgetInfo from "./MiniWeatherWidgetInfo";
 import styled from "styled-components";
 import {changeCoords} from "../state/location.slice";
+import {getDashboard} from "../DBcalls/DBcalls";
+import {setDashboard} from "../state/user.slice";
 //дістає дані про міста в дашборді??? - ✔
 //запускає цикл по цим містам і виводить кожне (а як їхню погоду знайти???) \(Т-Т)/ на location теж поставити список як weather?
 //якщо геолокація(місто в головному віджеті) і місто в дашборді співпадають, то його не виводять
@@ -19,6 +21,8 @@ import {changeCoords} from "../state/location.slice";
 //
 
 const MiniWeatherWidgetWrapper = styled.div`
+  //position: sticky;
+  //bottom: 0;
   width: 100%;
   //background-color: #E2F1FD;
   display: flex;
@@ -53,11 +57,7 @@ const MiniWeatherWidget = (onClick) => {
 
         <MiniWeatherWidgetWrapper>
             {user.dashboardInfo
-                 .filter(city =>
-                         !(city.cityName === searchedCity.cityName &&
-                         city.cityRegion === searchedCity.cityRegion &&
-                         city.cityCountry === searchedCity.cityCountry)
-                      )
+
                 .map((city, index) => {
                // const city = item;
                    // console.log("CITY")
@@ -65,12 +65,18 @@ const MiniWeatherWidget = (onClick) => {
                    // console.log(city)
                    // console.log(city.city)
 
+                const isSelected = (city.cityName === searchedCity.cityName &&
+                    city.cityRegion === searchedCity.cityRegion &&
+                    city.cityCountry === searchedCity.cityCountry)
+                    console.log("isSelectedisSelected")
+                console.log(isSelected)
                 console.log(city)
                 return (
 
                     <MiniWeatherWidgetInfo
                         key={`${city.cityName}${city.latitude}${city.longitude}`}
                         city={city}
+                        isSelected={isSelected}
 
                     />
 
@@ -83,9 +89,14 @@ const MiniWeatherWidget = (onClick) => {
     </>)
 }
 
+
 export default MiniWeatherWidget
 
-
+    /*.filter(city =>
+        !(city.cityName === searchedCity.cityName &&
+            city.cityRegion === searchedCity.cityRegion &&
+            city.cityCountry === searchedCity.cityCountry)
+    )*/
 /*
                         //data={
                         //dispatch(fetchCurrentWeatherAsync({ q: `${city.latitude},${city.longitude}`}))

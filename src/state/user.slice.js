@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {fetchCurrentWeatherAsync} from "./weather.slice";
 import {getDashboard, getUserInfo} from "../DBcalls/DBcalls";
+import {useEffect} from "react";
 
 const initialState = {
     isLogged: false,
@@ -8,6 +9,8 @@ const initialState = {
     userInfo: {},//name?
     dashboardInfo: []
 };
+
+
 
 export const userSlice = createSlice({
     name: 'user',
@@ -17,20 +20,28 @@ export const userSlice = createSlice({
             state.isLogged = true
             state.token = action.payload.token
             console.log(action.payload.token)
+            localStorage.setItem('isLogged', JSON.stringify(true));
+            localStorage.setItem('token', JSON.stringify(action.payload.token));
             //state.userInfo = getUserInfo(action.payload.token)//login
             //state.dashboardInfo = getDashboard(action)//login
         },
         userSignOut: (state) => {
             state.isLogged = false
+            localStorage.setItem('isLogged', JSON.stringify(false));
             state.token = ""
+            localStorage.setItem('token', JSON.stringify(""));
             state.userInfo = {}
+            localStorage.setItem('userInfo', JSON.stringify({}));
             state.dashboardInfo = []
+            localStorage.setItem('dashboardInfo', JSON.stringify([]));
         },
         setUserInfo: (state, action) => {
             state.userInfo = action.payload.data
+            localStorage.setItem('userInfo', JSON.stringify(action.payload.data));
         },
         setDashboard: (state, action) => {
             state.dashboardInfo = action.payload.data
+            localStorage.setItem('dashboardInfo', JSON.stringify(action.payload.data));
         }
     },
     /* extraReducers: (builder) => { //зв'язатися з дб і отримати дані

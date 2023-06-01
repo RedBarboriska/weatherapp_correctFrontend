@@ -98,7 +98,7 @@ export const HourlyForecast = ({data}) => {
                             <img src={`https:${item.condition.icon}`}/>
                         </div>
 
-                        <div>{item.condition.text}</div>
+                       {/* <div>{item.condition.text}</div>*/}
                         <div>{item.last_updated}</div>
                         <div>
                             <img src={waterDrop} style={{ width: '10px' }}/>

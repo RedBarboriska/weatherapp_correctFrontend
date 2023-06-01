@@ -20,7 +20,7 @@ const ForecastParamsWrapper = styled.div`
   flex-direction: row;
   text-align: left;
   padding-left: 10px;//вилазить!!!
- 
+ box-sizing: border-box;
   padding-bottom: 5px;
 
 `
@@ -110,7 +110,7 @@ const WeatherInfoMain = ({weatherData}) => {
 // dispatch(changeIsPressure())
                                   }}
                                   checked={JSON.parse(localStorage.getItem('isPressure')) === true}/>
-                Шанс снігу:<input type="checkbox" name="isSnow"
+                Ймовірність випадання снігу:<input type="checkbox" name="isSnow"
                                                      onChange={() =>{ dispatch(changeIsChanceOfSnow())
                                                          if (JSON.parse(localStorage.getItem('isChanceOfSnow'))) {
                                                              localStorage.setItem('isChanceOfSnow', JSON.stringify(false));
