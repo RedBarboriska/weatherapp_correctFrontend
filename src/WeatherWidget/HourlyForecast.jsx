@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import React, {useEffect, useRef, useState} from 'react';
 import {useSelector} from "react-redux";
-import snowflake from "./img/snowflake.png"
-import waterDrop from "./img/waterDrop.png"
-import pressure from "./img/pressure.png"
+import snowflake from "../img/snowflake.png"
+import waterDrop from "../img/waterDrop.png"
+import pressure from "../img/pressure.png"
 const HoursContainer = styled.div`
   display: flex;
 
@@ -34,15 +34,17 @@ const HoursItems = styled.div`
     const minValue = 0; // replace this with your actual min value
     const maxValue = 100; // replace this with your actual max value
 //rgb(226,241,253)
-    const color1 = {r: 129, g: 131, b: 192}; // replace with your first color
-    const color2 = {r: 188, g: 190, b: 249}; // replace with your second color
+    //const color1 = {r: 129, g: 131, b: 192}; // replace with your first color
+    //const color2 = {r: 188, g: 190, b: 249}; // replace with your second color
+   const color1 = {r: 68, g: 99, b: 174}; // replace with your first color
+   const color2 = {r: 226, g: 241, b: 253};
     //rgb(226,241,253) rgb(68,99,174)
     /*const r = Math.round(129 + (reversValue - minValue) * (229 - 129) / (maxValue - minValue));
     const g = Math.round(131 + (reversValue - minValue) * (230 - 131) / (maxValue - minValue));
     const b = Math.round(192 + (reversValue - minValue) * (255 - 192) / (maxValue - minValue));*/
-    const r = Math.round(68 + (reversValue - minValue) * (226 - 68) / (maxValue - minValue));
-    const g = Math.round(99 + (reversValue - minValue) * (241 - 99) / (maxValue - minValue));
-    const b = Math.round(174 + (reversValue - minValue) * (253 - 174) / (maxValue - minValue));
+    const r = Math.round(color1.r + (reversValue - minValue) * (color2.r - color1.r) / (maxValue - minValue));
+    const g = Math.round(color1.g + (reversValue - minValue) * (color2.g - color1.g) / (maxValue - minValue));
+    const b = Math.round(color1.b + (reversValue - minValue) * (color2.b - color1.b) / (maxValue - minValue));
     return `rgb(${r}, ${g}, ${b})`;
 }}
 

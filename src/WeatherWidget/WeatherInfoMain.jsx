@@ -6,7 +6,7 @@ import formatDate from "../FormatDate";
 import './weatherInfoMain.css';
 import {useDispatch, useSelector} from "react-redux";
 import {addCity, removeCity, signUp} from "../DBcalls/DBcalls";
-import {HourlyForecast} from "../HourlyForecast";
+import {HourlyForecast} from "./HourlyForecast";
 import {DailyForecast} from "../DailyForecast";
 import {changeIsChanceOfSnow, changeIsPressure} from "../state/forecastParams.slice";
 import AddOrRemove from "./AddOrRemove";
@@ -95,6 +95,8 @@ const WeatherInfoMain = ({weatherData}) => {
                         /></div>
                         <div>{weatherData?.current.condition.text}</div>
                     </div>
+                    <DailyForecast weatherData={weatherData}/>
+                    <DailyForecast weatherData={weatherData}/>
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>

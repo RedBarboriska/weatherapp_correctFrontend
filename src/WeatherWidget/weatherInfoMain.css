@@ -1,6 +1,6 @@
 
 .mainWeatherWidget {
-    width: 800px;
+    width: 90%;/*800px*/
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px ;
@@ -23,7 +23,7 @@
 .wigetColumns1 {
     flex-direction: column;
     text-align: left;
-    width: 25%;
+    width: 15%;/*25%*/
     padding: 10px;
 }
 
@@ -46,7 +46,7 @@
     padding: 10px;
     text-align: left;
     align-items: center;
-    width: 30%;
+    width: 20%;/*30%*/
     font-size: 20px;
     color: #4463AE;
 
@@ -58,7 +58,7 @@
 
 .wigetColumns3 {
     flex-direction: column;
-    width: 25%;
+    width: 25%;/*25%*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,7 +77,7 @@
 
 .wigetColumns4 {
     flex-direction: column;
-    width: 20%;
+    width: 20%;/*20%*/
 }
 
 .wigetColumns4 img {

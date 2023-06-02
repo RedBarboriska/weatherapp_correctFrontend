@@ -9,7 +9,7 @@ import styled from "styled-components";
 import axios from 'axios';
 //import Login from "./Login";
 import {signIn, signUp} from "./DBFunctions";
-import hourlyForecast, {HourlyForecast} from "./HourlyForecast";
+import hourlyForecast, {HourlyForecast} from "./WeatherWidget/HourlyForecast";
 import {DailyForecast} from "./DailyForecast";
 import refresh_icon from "./img/refresh_icon.png"
 import formatDate from "./FormatDate";

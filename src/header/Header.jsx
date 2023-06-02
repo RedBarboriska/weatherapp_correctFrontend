@@ -47,6 +47,10 @@ const Header = () => {
                     console.log("клік")
                     dispatch(showMyCities())}}>Мої міста</div>*/}
 
+                {geolocation.latitude!==""&& <div className="myCities" onClick={()=>{
+                    console.log("клік")
+                    dispatch(changeCoords({latitude: geolocation.latitude, longitude: geolocation.longitude}))}}>Моя геолокація</div>}
+
                 <div className="searchInput">
 
                      <input className="searchBar" type="text"

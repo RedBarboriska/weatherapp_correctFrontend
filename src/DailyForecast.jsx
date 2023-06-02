@@ -9,7 +9,7 @@ const DaysContainer = styled.div`
   flex-wrap: nowrap;
   overflow-x: auto;
   border-bottom-left-radius: 20px;
-  width:45%;
+  width:25%;//45%
 
   
 `;
