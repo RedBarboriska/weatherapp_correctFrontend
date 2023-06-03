@@ -1,25 +1,26 @@
 import './App.css';
 import React, {useEffect, useRef, useState} from 'react';
-import {getForecastWeatherData, getWeatherData} from "./api";
-import {getUserLocation} from "./utils";
-import Login from "./header/Login";
-import {buildMap, setInitialMap} from "./Map/maphelp";
-import MapModal from "./Map/MapModal";
+import {getForecastWeatherData, getWeatherData} from "./utils/api";
+import {getUserLocation} from "./utils/utils";
+import Login from "./components/Header/Login";
+import {buildMap, setInitialMap} from "./components/Map/maphelp";
+import MapModal from "./components/Map/MapModal";
 import styled from "styled-components";
 import axios from 'axios';
 //import Login from "./Login";
-import {signIn, signUp} from "./DBFunctions";
-import hourlyForecast, {HourlyForecast} from "./WeatherWidget/HourlyForecast";
-import {DailyForecast} from "./DailyForecast";
+
+import hourlyForecast, {HourlyForecast} from "./components/WeatherWidget/helpersComponents/HourlyForecast";
+import {DailyForecast} from "./components/WeatherWidget/helpersComponents/DailyForecast";
 import refresh_icon from "./img/refresh_icon.png"
-import formatDate from "./FormatDate";
+import formatDate from "./utils/formatDate";
 import LoadingSpinner from "./components/LoadingSpinner";
 import {Spin} from "antd";
 import {changeCoords} from "./state/location.slice";
-import SigningFrorm from "./header/SigningForm";
+import SigningFrorm from "./components/Header/SigningForm";
 
 
 //import setInitialMap from "./Map/maphelp";
+
 
 function App() {
 

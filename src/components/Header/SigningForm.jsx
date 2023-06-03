@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {signIn, signUp} from "../DBcalls/DBcalls";
 import styled from "styled-components";
 import Login from "./Login";
 import Register from "./Register";

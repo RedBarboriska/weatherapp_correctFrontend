@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import formatDate from "../FormatDate";
+import formatDate from "../../utils/formatDate";
 //import {DailyForecast} from "../DailyForecast";
 //import {WeatherResponse} from "../../../state/weather/weather.types";
 import './weatherInfoMain.css';
 import {useDispatch, useSelector} from "react-redux";
-import {addCity, removeCity, signUp} from "../DBcalls/DBcalls";
-import {HourlyForecast} from "./HourlyForecast";
-import {DailyForecast} from "../DailyForecast";
-import {changeIsChanceOfSnow, changeIsPressure} from "../state/forecastParams.slice";
-import AddOrRemove from "./AddOrRemove";
-import {setSearchedCity} from "../state/searchedCity.slice";
+import {addCity, removeCity, signUp} from "../../DBcalls/DBcalls";
+import {HourlyForecast} from "./helpersComponents/HourlyForecast";
+import {DailyForecast} from "./helpersComponents/DailyForecast";
+import {changeIsChanceOfSnow, changeIsPressure} from "../../state/forecastParams.slice";
+import AddOrRemove from "../AddOrRemove";
+import {setSearchedCity} from "../../state/searchedCity.slice";
 
 
 const ForecastParamsWrapper = styled.div`
@@ -61,7 +61,7 @@ const WeatherInfoMain = ({weatherData}) => {
                 <div className="wigetCityDiv">
                     <div className="wigetCityName">{weatherData?.location.name}</div>
                     <div className="wigetCityReg">{weatherData?.location.region}, {weatherData?.location.country} </div>
-                    <div className="AddOrRemove">{user.isLogged&&<AddOrRemove weatherData={weatherData}/>}</div>
+                    <div className="AddOrRemove">{user.token&&<AddOrRemove weatherData={weatherData}/>}</div>
 
                   {/*  {user.isLogged && <>
                         {isCityPresent ? (
@@ -95,8 +95,8 @@ const WeatherInfoMain = ({weatherData}) => {
                         /></div>
                         <div>{weatherData?.current.condition.text}</div>
                     </div>
-                    <DailyForecast weatherData={weatherData}/>
-                    <DailyForecast weatherData={weatherData}/>
+                   {/* <DailyForecast weatherData={weatherData}/>
+                    <DailyForecast weatherData={weatherData}/>*/}
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>

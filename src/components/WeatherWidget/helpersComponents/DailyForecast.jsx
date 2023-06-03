@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from 'react';
-import formatDate from "./FormatDate";
-import snowflake from "./img/snowflake.png";
+import formatDate from "../../../utils/formatDate";
+import snowflake from "../../../img/snowflake.png";
 import {useSelector} from "react-redux";
 
 const DaysContainer = styled.div`

@@ -7,7 +7,10 @@ import {useDispatch} from "react-redux";
 
 const dispatch = useDispatch
 export const signIn = async (login, password) => {
-    try {
+    const response = await axios.post('http://localhost:5000/api/sign-in', {login, password});
+    console.log(response)
+    return response
+/*    try {
         const response = await axios.post('http://localhost:5000/api/sign-in', {login, password});
         console.log(response);
         return {success: true, token: response.data.token};
@@ -18,7 +21,7 @@ export const signIn = async (login, password) => {
         console.log(error);
         console.log({success: false, message: error.response.data.errors.message})
         return  {success: false, message: error.response.data.errors.message};
-    }
+    }*/
 };
 
 export const signUp = async (login, password, name) => {
@@ -80,6 +83,7 @@ export const getUserInfo = async (token) => {
 }*/
 
 export const getDashboard = async (token) => {
+    console.log(token)
     const response = await axios.post('http://localhost:5000/api/mydashboard', {}, {
         headers: {
             'Authorization': token
@@ -88,7 +92,7 @@ export const getDashboard = async (token) => {
     console.log("response.data");
     console.log(response.data);
     console.log(response.data.cities);
-    return  {data: response.data.cities};
+    return  response.data.cities;
 }
 
 

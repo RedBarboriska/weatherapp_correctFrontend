@@ -4,7 +4,6 @@ import user from './user.slice';
 import geolocation from "./geolocation.slice";
 import forecastParams from "./forecastParams.slice";
 import {configureStore} from "@reduxjs/toolkit";
-import myCities from "./myCities.slice";
 import searchedCity from "./searchedCity.slice";
 
 export const store = configureStore({
@@ -14,7 +13,6 @@ export const store = configureStore({
         user,
         geolocation,
         forecastParams,
-        myCities,
         searchedCity
     },
     middleware: getDefaultMiddleware => {

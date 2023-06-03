@@ -1,6 +1,6 @@
 //import {LocationType} from "../../../state/types";
 
-import {setGeolocation} from "../state/geolocation.slice";
+import {setGeolocation} from "../../state/geolocation.slice";
 import {useDispatch} from "react-redux";
 
 //const dispatch = useDispatch()

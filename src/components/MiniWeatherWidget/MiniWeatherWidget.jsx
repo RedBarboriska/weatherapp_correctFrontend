@@ -6,13 +6,13 @@ import {
     isLoadingSelector,
     weatherDataSelector,
     weatherErrorSelector
-} from "../state/weather.slice";
+} from "../../state/weather.slice";
 import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
 import MiniWeatherWidgetInfo from "./MiniWeatherWidgetInfo";
 import styled from "styled-components";
-import {changeCoords} from "../state/location.slice";
-import {getDashboard} from "../DBcalls/DBcalls";
-import {setDashboard} from "../state/user.slice";
+import {changeCoords} from "../../state/location.slice";
+import {getDashboard} from "../../DBcalls/DBcalls";
+import {fetchUserDashboardAsync, setDashboard} from "../../state/user.slice";
 //дістає дані про міста в дашборді??? - ✔
 //запускає цикл по цим містам і виводить кожне (а як їхню погоду знайти???) \(Т-Т)/ на location теж поставити список як weather?
 //якщо геолокація(місто в головному віджеті) і місто в дашборді співпадають, то його не виводять
@@ -38,15 +38,24 @@ const MiniWeatherWidget = (onClick) => {
 
     const user = useSelector((state) => state.user)
     const geolocation = useSelector((state) => state.geolocation)
-    const [nextId, setNextId] = useState(1)
-    const [widgets, setWidgets] = useState([{id: nextId}])
+    //const [nextId, setNextId] = useState(1)
+    //const [widgets, setWidgets] = useState([{id: nextId}])
     const dispatch = useDispatch()
-    const data = user.dashboardInfo.map((city) => ({
+   /* const data = user.dashboardInfo.map((city) => ({
         latitude: city.latitude,
         longitude: city.longitude,
-    }));
+    }));*/
+
     const searchedCity = useSelector((state) => state.searchedCity)
 
+    useEffect(() => {
+        //console.log(user.token)
+        dispatch(fetchUserDashboardAsync({token:user.token}))
+    },[user.token])
+
+   /*if(user.token){
+       console.log(user.token)
+    dispatch(fetchUserDashboardAsync(user.token))}*/
 
     //`${location?.latitude},${location?.longitude}`
     //const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
@@ -55,6 +64,7 @@ const MiniWeatherWidget = (onClick) => {
 
     return (<>
 
+        {user.token &&
         <MiniWeatherWidgetWrapper>
             {user.dashboardInfo
 
@@ -82,7 +92,7 @@ const MiniWeatherWidget = (onClick) => {
 
                 );
             })}
-        </MiniWeatherWidgetWrapper>
+        </MiniWeatherWidgetWrapper>}
 
 
 

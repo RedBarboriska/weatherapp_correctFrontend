@@ -1,11 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
 import minus from "../img/minus.png"
 import plus from "../img/plus.png"
-import WeatherInfoMain from "./WeatherInfoMain";
+import WeatherInfoMain from "./WeatherWidget/WeatherInfoMain";
 import styled from "styled-components";
 import {addCity, getDashboard, removeCity} from "../DBcalls/DBcalls";
 import {getUserInfo} from "../DBcalls/DBcalls";
-import {setDashboard, setUserInfo} from "../state/user.slice";
+import {fetchUserDashboardAsync, setDashboard, setUserInfo} from "../state/user.slice";
 const AddOrRemoveWrapper= styled.div`
   //border: 2px solid #3e5ea2;
   //width: 20px;
@@ -50,16 +50,7 @@ const AddOrRemove = ({weatherData}) => {
                              weatherData.location.name,
                              weatherData.location.region,
                              weatherData.location.country)
-                             .then(r => getDashboard(user.token)
-                                 .then(dashboardResponse => {
-                                     console.log("dashboardResponse")
-                                     console.log(dashboardResponse)
-                                     dispatch(setDashboard(dashboardResponse))
-                                 })
-                                 .catch(error => {
-                                     console.log(error)
-
-                                 })) } }
+                             .then(r =>  dispatch(fetchUserDashboardAsync({token:user.token}))) } }
 
         />}
         {!isCityPresent && <img src={plus} style={{ width: '30px', filter: 'hue-rotate(120deg)' }}
@@ -74,16 +65,7 @@ const AddOrRemove = ({weatherData}) => {
                                             weatherData.location.country,
                                             weatherData.location.lat,
                                             weatherData.location.lon)
-                                            .then(r => getDashboard(user.token)
-                                                .then(dashboardResponse => {
-                                                    console.log("dashboardResponse")
-                                                    console.log(dashboardResponse)
-                                                    dispatch(setDashboard(dashboardResponse))
-                                                })
-                                                .catch(error => {
-                                                    console.log(error)
-
-                                                })) } }
+                                            .then(r =>  dispatch(fetchUserDashboardAsync({token:user.token}))) } }
         />}
     </AddOrRemoveWrapper>
 )

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import React, {useEffect, useRef, useState} from 'react';
 import {useSelector} from "react-redux";
-import snowflake from "../img/snowflake.png"
-import waterDrop from "../img/waterDrop.png"
-import pressure from "../img/pressure.png"
+import snowflake from "../../../img/snowflake.png"
+import waterDrop from "../../../img/waterDrop.png"
+import pressure from "../../../img/pressure.png"
 const HoursContainer = styled.div`
   display: flex;
 

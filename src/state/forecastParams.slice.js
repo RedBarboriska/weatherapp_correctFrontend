@@ -20,7 +20,7 @@ export const forecastParamsSlice = createSlice({
     initialState,
     reducers: {
         changeIsPressure: (state) => {
-            state.isPressure = state.isPressure === false;
+            state.isPressure = !state.isPressure === false;
         },
         changeIsWind: (state) => {
             state.isWind = state.isWind === false;

@@ -1,19 +1,18 @@
-import {signUp} from "../DBFunctions";
+
 
 import './header.css';
 //import WeatherInfoMain from "../WeatherWidget/WeatherInfoMain";
 import MapModal from "../Map/MapModal";
 //import {setInitialMap} from "../Map/maphelp";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {weatherDataSelector} from "../state/weather.slice";
+import {weatherDataSelector} from "../../state/weather.slice";
 import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
-import {changeCityname, changeCoords} from "../state/location.slice";
+import {changeCityname, changeCoords} from "../../state/location.slice";
 import SigningForm from "./SigningForm";
 import ReactDOM from "react-dom";
-import {userSignOut} from "../state/user.slice";
+import {userSignOut} from "../../state/user.slice";
 import React, {useState} from "react";
 import {setInitialMap} from "../Map/maphelp";
-import {showMyCities} from "../state/myCities.slice";
 
 const Header = () => {
     const [city, setCity] = useState('');
@@ -68,8 +67,9 @@ const Header = () => {
 
                 </div>
 
-                {user.isLogged && <div className="login" onClick={() =>dispatch(userSignOut())}>Вийти</div>}
-                {!user.isLogged &&
+                {user.token && <div className="login" onClick={() =>{dispatch(userSignOut())
+                    localStorage.removeItem('token');}}>Вийти</div>}
+                {!user.token &&
 
                     <div className="login" onClick={() =>setShowSigningForm(true)}>
                         Увійти/Зареєструватись

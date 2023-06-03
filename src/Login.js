@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {signIn} from "./DBFunctions";
+
 import styled from "styled-components";
 
 const LoginWrapper = styled.div`

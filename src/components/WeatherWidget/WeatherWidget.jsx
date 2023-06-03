@@ -4,15 +4,17 @@ import {
     isLoadingSelector,
     weatherDataSelector,
     weatherErrorSelector
-} from '../state/weather.slice';
+} from '../../state/weather.slice';
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 // @ts-ignore
 import {getDataKey, getLocationQuery} from "./weatherWidget.helpers";
 import WeatherInfoMain from "./WeatherInfoMain";
-import {changeCoords} from "../state/location.slice";
-import {setGeolocation} from "../state/geolocation.slice";
-import {setSearchedCity} from "../state/searchedCity.slice";
+import {changeCoords} from "../../state/location.slice";
+import {setGeolocation} from "../../state/geolocation.slice";
+import {setSearchedCity} from "../../state/searchedCity.slice";
+import LoadingSpinner from "../LoadingSpinner";
+import {Skeleton} from "antd";
 
 
 
@@ -44,31 +46,13 @@ console.log(weatherData, location)
         const fetchLocation = () => {
             //видалити попереднє значення
             if (location.latitude !== "" && location.longitude !== "") {
-               // console.log(location)
-                //console.log(location.latitude)
-                //console.log(location.longitude)
                     dispatch(fetchCurrentWeatherAsync({q: `${location.latitude},${location.longitude}`}))
             } else if(location.cityName !== ""){
-               // console.log(location)
-               // console.log(location.cityName)
                     dispatch(fetchCurrentWeatherAsync({q: `${location.cityName}`}))
             }
             else {
                 getLocationQuery(q => {
-                    console.log(q)
-                    //console.log("user.dashboardInfo")
-                    //console.log(user.dashboardInfo)
-                   /* if (q.error&&user.dashboardInfo.length!==0){
-                        dispatch(changeCoords({latitude: user.dashboardInfo[0]?.latitude, longitude: user.dashboardInfo[0]?.longitude}))
-                    }else{
-                        dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
-                    }*/
                     dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
-
-                    //dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
-                    console.log(q)
-                    //перевірити що повертає
-                    //dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
                     console.log(location)
                     if (!q.error) {
                         console.log(q)
@@ -105,13 +89,13 @@ console.log(weatherData, location)
                 {!isLoading && !error && weatherData && !weatherData?.error?.message &&
                     <>
                        {/* {console.log(weatherData)}*/}
-
+                        {/*<Skeleton.Button active={true} size={"large"} shape={"circle"} block={true} />*/}
                         <WeatherInfoMain weatherData={weatherData}/>
 
                     </>
                 }
                 {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
-                {isLoading && <p>Завантаження... </p>}
+                {isLoading && <p>Завантаження...<LoadingSpinner/> </p>}
 
                 {error && <div>За вашим запитом нічого не знайдено</div>}
             </WidgetWrapper>
@@ -137,3 +121,4 @@ export default WeatherWidget
             </>}
 
 */
+

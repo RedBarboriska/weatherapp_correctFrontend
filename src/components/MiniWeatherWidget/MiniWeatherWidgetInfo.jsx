@@ -5,11 +5,11 @@ import {
     isLoadingSelector,
     weatherDataSelector,
     weatherErrorSelector
-} from "../state/weather.slice";
+} from "../../state/weather.slice";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from 'react';
-import AddOrRemove from "../WeatherWidget/AddOrRemove";
-import {changeCityname, changeCoords} from "../state/location.slice";
+import AddOrRemove from "../AddOrRemove";
+import {changeCityname, changeCoords} from "../../state/location.slice";
 
 const MiniWeatherWidgetInfo = (city) => {
     const dispatch=useDispatch()

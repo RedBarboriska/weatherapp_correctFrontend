@@ -1,8 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {getDashboard, getUserInfo, signIn} from "../DBcalls/DBcalls";
+import {getDashboard, getUserInfo, signIn} from "../../DBcalls/DBcalls";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {setDashboard, setUserInfo, userSignIn} from "../state/user.slice";
+import {
+    fetchUserDashboardAsync,
+    fetchUserSignInAsync,
+    setDashboard,
+    setUserInfo,
+    userSignIn
+} from "../../state/user.slice";
 
 const LoginWrapper = styled.div`
   position: absolute;
@@ -29,16 +35,20 @@ const Login = () => {
             <div><label htmlFor="uname"><b>Логін: </b></label>
                 <input type="text" placeholder="Введіть логін" name="uname" value={login}
                        onChange={(e) => setLogin(e.target.value)} required/>
-
             </div>
             <div>
                 <label htmlFor="psw"><b>Пароль: </b></label>
                 <input type="password" placeholder="Введіть пароль" name="psw" value={password}
                        onChange={(e) => setPassword(e.target.value)} required/>
             </div>
-            <input type="submit" onClick={async () =>  signIn(login, password).then(response => {
+            <input type="submit" onClick={async () =>  dispatch(fetchUserSignInAsync({login:login, password:password})).then(response => {
+
                 console.log(response)
-                if (response.success) {
+                console.log(user.error)
+
+
+
+                /*if (response.success) {
                     dispatch(userSignIn({ token: response.token}))
                     getUserInfo(response.token)
                         .then(userInfoResponse => {
@@ -65,11 +75,13 @@ const Login = () => {
                     setMessage(response.message)
                     setShowMessageBox(true)
                     //вивести користувачу response.message
-                }
+                }*/
 
             })} value="Увійти"/>
-            {showMessageBox &&
-                <div>{message}</div>}
+            {user.error &&
+                <div>{user.error}</div>}
+            {/*{user.error &&
+                <div>{user.error}</div>}*/}
         </div>
 
     );
