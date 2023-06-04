@@ -16,12 +16,8 @@ export const fetchCurrentWeatherAsync = createAsyncThunk(
     `${SLICE_KEY}/fetch`,
     ({q}) => getWeatherData({q}),//createGETRequest({params: {q}})//,
 
-    {
-        serializeError: (error) => ({
-            ...error.response,
-        })
-    }
-)//[location ]
+
+)
 
 //SLICE
 export const weatherSlice = createSlice({
@@ -44,6 +40,7 @@ console.log(action.payload)
             .addCase(fetchCurrentWeatherAsync.rejected, (state, action) => {
                 state.isLoading[action.meta.arg.q] = false;
                 // @ts-ignore
+                console.log("ПОМИЛКА")
                 state.error[action.meta.arg.q] = action.error.status
             });
     },
