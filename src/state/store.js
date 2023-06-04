@@ -5,7 +5,7 @@ import geolocation from "./geolocation.slice";
 import forecastParams from "./forecastParams.slice";
 import {configureStore} from "@reduxjs/toolkit";
 import searchedCity from "./searchedCity.slice";
-
+import weatherMap from "./weatherMap.slice"
 export const store = configureStore({
     reducer: {
         weather,
@@ -13,7 +13,8 @@ export const store = configureStore({
         user,
         geolocation,
         forecastParams,
-        searchedCity
+        searchedCity,
+        weatherMap
     },
     middleware: getDefaultMiddleware => {
         const defaultMiddleware = getDefaultMiddleware({

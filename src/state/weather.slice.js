@@ -27,28 +27,28 @@ export const weatherSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCurrentWeatherAsync.pending, (state, action) => {
-                if (!state.value[action.meta.arg.q]) {
-                    state.isLoading[action.meta.arg.q] = true;
+                if (!state.value) {
+                    state.isLoading = true;
                 }
             })
             .addCase(fetchCurrentWeatherAsync.fulfilled, (state, action) => {
 console.log(action.payload)
-                state.value[action.meta.arg.q] = action.payload
-                state.isLoading[action.meta.arg.q] = false;
+                state.value = action.payload
+                state.isLoading = false;
 
             })
             .addCase(fetchCurrentWeatherAsync.rejected, (state, action) => {
-                state.isLoading[action.meta.arg.q] = false;
+                state.isLoading = false;
                 // @ts-ignore
                 console.log("ПОМИЛКА")
-                state.error[action.meta.arg.q] = action.error.status
+                state.error = action.error.status
             });
     },
 });
 
 //SELECTORS
-export const isLoadingSelector = (state, q) => state.weather.isLoading[q];
-export const weatherDataSelector = (state, q) => state.weather.value[q]
-export const weatherErrorSelector = (state, q) => state.weather.error[q]
+export const isLoadingSelector = (state, q) => state.weather.isLoading;
+export const weatherDataSelector = (state, q) => state.weather.value
+export const weatherErrorSelector = (state, q) => state.weather.error
 
 export default weatherSlice.reducer;

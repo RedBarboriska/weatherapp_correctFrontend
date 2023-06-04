@@ -48,11 +48,12 @@ function App_redux() {
     return (
         <AppWrapper>
             <Header/>
+            <MiniWeatherWidget/>
 
             <WeatherWidget/>
 
 
-            <MiniWeatherWidget/>
+
 
 
             {/*<Header/>

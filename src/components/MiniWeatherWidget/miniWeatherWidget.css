@@ -1,14 +1,29 @@
 
-.miniWeatherWidget {
+/*.miniWeatherWidget {
     align-items: center;
     width: 150px;
     border-radius: 20px;
     margin-left: 10px;
     display: flex;
     flex-direction: column;
-    /*border: 2px solid #3e5ea2;*/
+    border: 2px solid #3e5ea2;
     background-color: #cae4fa;
     padding: 10px;
+    cursor: pointer;
+}*/
+.miniWeatherWidget {
+    /*align-items: center;*/
+    width: 130px;
+
+    //font-size: 20pt;
+    border-radius: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    /*border: 2px solid #3e5ea2;*/
+    background-color: #cae4fa;
+        padding: 3px;
+    padding-left: 7px;
     cursor: pointer;
 }
 
@@ -16,27 +31,73 @@
     background-color: rgb(181, 222, 255); /* Затемнення */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+.addOrRemove{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+}
+
 
 /*
 .miniWeatherWidget div {
     pointer-events: none;
 }*/
 
+.head{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+}
+.citregName{
+    /*display: flex;
+    flex-direction: column;*/
+}
+
 .cityName {
-    text-align: center;
-    font-size: 25px;
+    display: flex;
+    /**/
+    text-align: left;
+    font-size: 18px;
     color: #4463AE;
+
+    margin-bottom: -3px;
+
 }
 
 .regionName {
-    font-size: 12px;
+    /*border: 1px solid #3e5ea2;*/
+    font-size: 10px;
     color: #8191b9;
+         /* Set the width of the div as per your requirements */
+}
+
+
+.cityName, .regionName{
+    /*border: 1px solid #3e5ea2;*/
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides the overflowed text */
+    text-overflow: ellipsis; /* Displays ellipsis (...) when text is truncated */
+    width: 100px;
+}
+
+.weatherInfo{
+
+    display: flex;
+    flex-direction: row;
 }
 
 .temperature {
+    /*border: 2px solid #3e5ea2;*/
     font-size: 25px;
     color: #4463AE;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    text-align: center;
 }
+
 
 .mainInfo {
     align-items: center;
@@ -44,6 +105,7 @@
     text-align: center;
     flex-direction: row;
     display: flex;
+
 }
 
 .tempInfo {
@@ -52,26 +114,33 @@
 }
 
 .minmax {
+    /*border: 2px solid #3e5ea2;*/
     color: #4463AE;
-    width: 70%;
+   /* width: 70%;*/
     flex-direction: column;
     display: flex;
-    font-size: 20px;
+    font-size: 16px;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
+.imgDIV{
 
-.minmaxTemp, .minmaxNames {
+    /*border: 2px solid #3e5ea2;*/
+
+}
+
+/*.minmaxTemp, .minmaxNames {
     flex-direction: row;
     display: flex;
     flex: 1;
     width: 100%;
 
-}
+}*/
 
 
+/*
 .minmax div {
-    /*border: 2px solid #3e5ea2;*/
+    !*border: 2px solid #3e5ea2;*!
     flex: 1;
-}
+}*/

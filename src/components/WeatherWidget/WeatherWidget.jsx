@@ -30,13 +30,15 @@ const WeatherWidget = () => {
     const [modalVisible, setModalVisible] = useState(false)
     const [geolocationError, setGeolocationError] = useState(false)
 
-    const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
-    const isLoading = useSelector(state => isLoadingSelector(state, getDataKey(location)), shallowEqual)
-    const error = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
+    const weatherData = useSelector(state => weatherDataSelector(state), shallowEqual)
+    const isLoading = useSelector(state => isLoadingSelector(state), shallowEqual)
+    const error = useSelector(state => weatherErrorSelector(state), shallowEqual)
+    console.log(weatherData)
     //const user = useSelector((state) => state.user)
     //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
 console.log(weatherData, location)
-    if (weatherData && !weatherData?.error?.message){
+    console.log(error)
+    if (weatherData.location && !weatherData?.error?.message){
     dispatch(setSearchedCity(
         {cityName: weatherData.location.name,
             cityRegion:weatherData.location.region,
@@ -80,16 +82,13 @@ console.log(weatherData, location)
 
     return (<>
             <WidgetWrapper
-                /*onClick={() => {
-                    setModalVisible(true)
-                }}*/>
+            >
                 {geolocationError &&
                     <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
 
-                {!isLoading && !error && weatherData && !weatherData?.error?.message &&
+                {!isLoading  && weatherData && !weatherData?.error?.message &&
                     <>
-                       {/* {console.log(weatherData)}*/}
-                        {/*<Skeleton.Button active={true} size={"large"} shape={"circle"} block={true} />*/}
+
                         <WeatherInfoMain weatherData={weatherData}/>
 
                     </>
@@ -97,7 +96,7 @@ console.log(weatherData, location)
                 {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
                 {isLoading && <p>Завантаження...<LoadingSpinner/> </p>}
 
-                {error && <div>За вашим запитом нічого не знайдено</div>}
+                {/*{error!=={} && <div>За вашим запитом нічого не знайдено</div>}*/}
             </WidgetWrapper>
             {/*{modalVisible &&*/}
             {/*    ReactDOM.createPortal(<MapModal defaultLocation={location} onClose={(data) => {*/}
@@ -122,3 +121,7 @@ export default WeatherWidget
 
 */
 
+/*
+
+
+ */
