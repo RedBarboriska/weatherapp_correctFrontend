@@ -28,6 +28,7 @@ const MiniWeatherWidgetWrapper = styled.div`
   display: flex;
   flex-direction: row;
   text-align: left;
+  padding-top: 10px;
   //padding-left: 10px;
   //padding-bottom: 5px;
   

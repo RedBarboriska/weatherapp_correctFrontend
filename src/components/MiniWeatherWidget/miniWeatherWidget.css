@@ -56,8 +56,8 @@
 }
 
 .cityName {
-    display: flex;
-    /**/
+
+    /*display: flex;*/
     text-align: left;
     font-size: 18px;
     color: #4463AE;

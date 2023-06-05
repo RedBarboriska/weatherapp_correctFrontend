@@ -27,7 +27,7 @@ export const fetchUserDashboardAsync = createAsyncThunk(
     ({token}) => getDashboard(token))
 export const fetchUserInfoAsync = createAsyncThunk(
     `${SLICE_KEY}/getUserInfo`,
-    ({token}) => getUserInfo({token}))
+    ({token}) => getUserInfo(token))
 /*export const fetchAddCityAsync = createAsyncThunk(
     `${SLICE_KEY}/fetch`,
     ({token}) => addCity({token}))

@@ -11,6 +11,7 @@ import WeatherWidget from "./components/WeatherWidget/WeatherWidget";
 import Header from "./components/Header/Header";
 import MiniWeatherWidget from "./components/MiniWeatherWidget/MiniWeatherWidget";
 import {fetchUserDashboardAsync, setToken} from "./state/user.slice";
+import {removeAll} from "./state/weatherMap.slice";
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -41,6 +42,7 @@ function App_redux() {
             dispatch(fetchUserDashboardAsync({token:JSON.parse(localStorage.getItem('token'))}))
             //localStorage.removeItem('name');
         }
+
         //console.log(user.token)
     },)
 

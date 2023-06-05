@@ -2,7 +2,7 @@
 .mainWeatherWidget {
     width: 90%;/*800px*/
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px ;
 }
 
@@ -23,7 +23,7 @@
 .wigetColumns1 {
     flex-direction: column;
     text-align: left;
-    width: 15%;/*25%*/
+    width: 15%;/*25%  15*/
     padding: 10px;
 }
 
@@ -46,7 +46,7 @@
     padding: 10px;
     text-align: left;
     align-items: center;
-    width: 60%;/*30%*/
+    width: 25%;/*30%  60%*/
     font-size: 20px;
     color: #4463AE;
 

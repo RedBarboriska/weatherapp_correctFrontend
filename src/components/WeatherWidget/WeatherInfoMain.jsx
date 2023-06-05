@@ -77,6 +77,12 @@ const WeatherInfoMain = ({weatherData}) => {
                     </>}*/}
                 </div>
                 <div className="wigetMain">
+                    <div className="wigetColumns2">
+                        <div className="degree">{weatherData?.current.temp_c}°C<img
+                            src={`https:${weatherData?.current.condition.icon}`}
+                        /></div>
+                        <div>{weatherData?.current.condition.text}</div>
+                    </div>
                     <div className="wigetColumns1">
                         <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
                         <hr/>
@@ -89,11 +95,29 @@ const WeatherInfoMain = ({weatherData}) => {
                         <div className="wigetAttr">UV: {weatherData?.current.uv}</div>
 
                     </div>
-                    <div className="wigetColumns2">
-                        <div className="degree">{weatherData?.current.temp_c}°C<img
-                            src={`https:${weatherData?.current.condition.icon}`}
-                        /></div>
-                        <div>{weatherData?.current.condition.text}</div>
+                    <div className="wigetColumns1">
+                        <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
+                        <hr/>
+                        <div className="wigetAttr">Відчувається як {weatherData?.current.feelslike_c}°C</div>
+                        <hr/>
+                        <div className="wigetAttr">Вологість: {weatherData?.current.humidity}%</div>
+                        <hr/>
+                        <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
+                        <hr/>
+                        <div className="wigetAttr">UV: {weatherData?.current.uv}</div>
+
+                    </div>
+                    <div className="wigetColumns1">
+                        <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
+                        <hr/>
+                        <div className="wigetAttr">Відчувається як {weatherData?.current.feelslike_c}°C</div>
+                        <hr/>
+                        <div className="wigetAttr">Вологість: {weatherData?.current.humidity}%</div>
+                        <hr/>
+                        <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
+                        <hr/>
+                        <div className="wigetAttr">UV: {weatherData?.current.uv}</div>
+
                     </div>
                    {/* <DailyForecast weatherData={weatherData}/>
                     <DailyForecast weatherData={weatherData}/>*/}

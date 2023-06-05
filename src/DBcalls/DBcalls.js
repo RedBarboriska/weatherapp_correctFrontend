@@ -40,12 +40,14 @@ export const signUp = async (login, password, name) => {
 }
 
 export const getUserInfo = async (token) => {
+    console.log(token)
         const response = await axios.post('http://localhost:5000/api/me', {}, {
             headers: {
                 'Authorization': token
             }
         });
         console.log("response.data");
+    console.log(response)
         console.log(response.data);
         return  {data: response.data};
         // setLoginData(response.data);

@@ -52,7 +52,7 @@ const SigningForm = ({onClose}) => {
                 <input type="submit" onClick={() => {
                     setShowRegister(true);
                     setShowLogin(false);
-                }} value="Не маєте акаунту? Зареєструватися"/>
+                }} value="Не маєте акаунту? Створити"/>
             </>}
             {showRegister && <>
                 <Register/>

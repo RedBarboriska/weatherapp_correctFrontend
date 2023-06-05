@@ -13,7 +13,7 @@ import {changeCityname, changeCoords} from "../../state/location.slice";
 import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
 import {
     fetchMapWeatherAsync,
-    isLoadingMapSelector,
+    isLoadingMapSelector, removeByKey,
     weatherDataMapSelector,
     weatherErrorMapSelector
 } from "../../state/weatherMap.slice";
@@ -35,17 +35,20 @@ const MiniWeatherWidgetInfo = (city) => {
     const weatherData = useSelector(state => weatherDataMapSelector(state, getDataKey(location), shallowEqual))
     const isLoading = useSelector(state => isLoadingMapSelector(state, getDataKey(location)), shallowEqual)
     const error = useSelector(state => weatherErrorMapSelector(state, getDataKey(location)), shallowEqual)
-    if(weatherData && weatherData.location.name!==city.city.cityName && location!==city.city.cityName){
+    if(weatherData && weatherData.location?.name!==city.city.cityName && location!==city.city.cityName){
         console.log("INSIDE")
-        console.log(weatherData.location.name)
+        console.log(weatherData)
         console.log(city.city.cityName)
         console.log(location)
         setIsSearchByName(true)
         //setLocation(`${city.city.cityName}`)
-        setLocation({cityName:"",latitude:"", longitude:city.city.cityName})
+
+        setLocation({longitude:"",latitude:"", cityName:city.city.cityName})
+        console.log(`${weatherData.location.lat},${weatherData.location.lon}`)
+        //dispatch(removeByKey(`${weatherData.location.lat},${weatherData.location.lon}`))
     }
     console.log("WEATHER DATA")
-    console.log("PLEASE")
+    //console.log("PLEASE")
     console.log(weatherData)
     console.log(isLoading)
     useEffect(() => {
@@ -93,7 +96,7 @@ const MiniWeatherWidgetInfo = (city) => {
 
             <div className={"head"}>
                 <div >
-                    <div className={"cityName"}>{weatherData?.location.name}</div>
+                    <div className={"cityName"}>{weatherData?.location?.name}</div>
                     <div className={"regionName"}>{weatherData?.location?.region},{weatherData?.location?.country}</div>
                 </div>
                 <div className={"addOrRemove"}><AddOrRemove weatherData={weatherData} width={"20px"}/></div>
@@ -102,10 +105,10 @@ const MiniWeatherWidgetInfo = (city) => {
             <div  className={"weatherInfo"}>
                 <div className={"temperature"}>{String(weatherData?.current?.temp_c).split(".")[0]}°</div>
                 <div  className={"minmax"}>
-                    <div>{String(weatherData?.forecast?.forecastday[0].day.maxtemp_c).split(".")[0]}°</div>
-                    <div>{String(weatherData?.forecast?.forecastday[0].day.mintemp_c).split(".")[0]}°</div>
+                    <div>{String(weatherData?.forecast?.forecastday[0]?.day.maxtemp_c).split(".")[0]}°</div>
+                    <div>{String(weatherData?.forecast?.forecastday[0]?.day.mintemp_c).split(".")[0]}°</div>
                 </div>
-                <img className={"imgDIV"} src={`https:${weatherData.current?.condition.icon}`}/>
+                <img className={"imgDIV"} src={`https:${weatherData?.current?.condition?.icon}`}/>
             </div>
 
 

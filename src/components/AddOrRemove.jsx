@@ -6,7 +6,7 @@ import styled from "styled-components";
 import {addCity, getDashboard, removeCity} from "../DBcalls/DBcalls";
 import {getUserInfo} from "../DBcalls/DBcalls";
 import {fetchUserDashboardAsync, setDashboard, setUserInfo} from "../state/user.slice";
-import {removeByKey, weatherDataMapSelector} from "../state/weatherMap.slice";
+import {removeByKey, removeByProperties, weatherDataMapSelector} from "../state/weatherMap.slice";
 import {getDataKey} from "./WeatherWidget/weatherWidget.helpers";
 const AddOrRemoveWrapper= styled.div`
   //border: 2px solid #3e5ea2;
@@ -58,7 +58,10 @@ const AddOrRemove = ({weatherData, width}) => {
                                  console.log("REMOVE")
                                  console.log(weatherData)
                                  console.log(`${weatherData.location.lat},${weatherData.location.lon}`)
-                             dispatch(removeByKey(`${weatherData.location.lat},${weatherData.location.lon}`))
+                                 dispatch(removeByProperties({name:weatherData.location.name, region:weatherData.location.region,country:weatherData.location.country})
+                             //dispatch(removeByKey(`${weatherData.location.lat},${weatherData.location.lon}`)
+
+                             )
                              }) } }
 
         />}
