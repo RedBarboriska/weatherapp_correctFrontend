@@ -19,6 +19,7 @@ import map_icon from "../../img/map_icon.png";
 import search_icon from "../../img/search_icon.png";
 import {Space} from "antd";
 import Search from "antd/es/input/Search";
+import SearchTools from "./SearchTools";
 
 
 const Header = () => {
@@ -63,40 +64,8 @@ const Header = () => {
                     console.log("клік")
                     dispatch(changeCoords({latitude: geolocation.latitude, longitude: geolocation.longitude}))
                 }}>Моя геолокація</div>}*/}
+                <SearchTools/>
 
-                <div className="searchInput">
-
-
-                    <input className="searchBar" type="text"
-                           placeholder="Введіть назву населеного пункту" value={city}
-                           onChange={(e) => setCity(e.target.value)}/>
-                    <div className={"searchIcons"}>
-                        <img src={search_icon} className="searchButton" onClick={() => {
-                            if (city !== "") {
-                                dispatch(changeCityname(city));
-                            }
-                        }}/>
-                        {/*<input className="searchButton" type="submit" value="Пошук"
-                           onClick={() => {
-                               if (city !== "") {
-                                   dispatch(changeCityname(city));
-                               }
-                           }}/>*/}
-
-
-                        <img src={map_icon} className="searchButton" onClick={() => setShowMapModal(true)}/>
-                        {/*<input className="searchButton" type="submit" value="Карта" onClick={() =>setShowMapModal(true)}/>*/}
-
-                        {geolocation.latitude !== "" && <img src={geolocation_icon} className="searchButton"
-                                                             onClick={() => {
-                                                                 console.log("клік")
-                                                                 dispatch(changeCoords({
-                                                                     latitude: geolocation.latitude,
-                                                                     longitude: geolocation.longitude
-                                                                 }))
-                                                             }} value={"Моя геолокація"}/>}
-                    </div>
-                </div>
                 {user.token &&
                     <div className="userName">
                         <img src={user_icon} style={{width: "20px"}}/>
@@ -115,24 +84,7 @@ const Header = () => {
                         Увійти
                     </div>}
             </div>
-            {showMapModal &&
-                ReactDOM.createPortal(<MapModal
-                    defaultLocation={
-                        weatherData?.location?.lat
-                            ? {latitude: weatherData.location.lat, longitude: weatherData.location.lon}
-                            : geolocation.latitude !== ''
-                                ? {latitude: geolocation.latitude, longitude: geolocation.longitude}
-                                : {latitude: "50.44989086706778", longitude: "30.524897236099616"}
-                    }
 
-                    onClose={(data) => {
-                        if (data) {
-                            dispatch(changeCoords(data))
-                        } //під питанням
-                        //setLocation(data)
-                        setShowMapModal(false)
-                        setInitialMap(null)
-                    }}/>, document.body)}
             {showSigningForm &&
                 ReactDOM.createPortal(<SigningForm onClose={() => setShowSigningForm(false)}/>, document.body)}
 

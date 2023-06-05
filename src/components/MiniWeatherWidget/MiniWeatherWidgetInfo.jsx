@@ -29,20 +29,21 @@ const MiniWeatherWidgetInfo = (city) => {
     const [isSearchByName, setIsSearchByName] = useState(false)
     //const location = `${city.city.latitude},${city.city.longitude}`
 
-
+const key =`${city.city.latitude},${city.city.longitude},${city.city.cityName}`
+    console.log(key)
+    console.log("key")
     const locationName=city.city.cityName
     //dispatch(fetchCurrentWeatherAsync({q: `${city.city.latitude},${city.city.longitude}`}))
-    const weatherData = useSelector(state => weatherDataMapSelector(state, getDataKey(location), shallowEqual))
-    const isLoading = useSelector(state => isLoadingMapSelector(state, getDataKey(location)), shallowEqual)
-    const error = useSelector(state => weatherErrorMapSelector(state, getDataKey(location)), shallowEqual)
-    if(weatherData && weatherData.location?.name!==city.city.cityName && location!==city.city.cityName){
+    const weatherData = useSelector(state => weatherDataMapSelector(state, key), shallowEqual)
+    const isLoading = useSelector(state => isLoadingMapSelector(state, key), shallowEqual)
+    const error = useSelector(state => weatherErrorMapSelector(state, key), shallowEqual)
+    console.log(weatherData)
+    if(weatherData && weatherData.location?.name!==city.city.cityName && location.cityName!==city.city.cityName){
         console.log("INSIDE")
         console.log(weatherData)
         console.log(city.city.cityName)
         console.log(location)
         setIsSearchByName(true)
-        //setLocation(`${city.city.cityName}`)
-
         setLocation({longitude:"",latitude:"", cityName:city.city.cityName})
         console.log(`${weatherData.location.lat},${weatherData.location.lon}`)
         //dispatch(removeByKey(`${weatherData.location.lat},${weatherData.location.lon}`))
@@ -54,7 +55,9 @@ const MiniWeatherWidgetInfo = (city) => {
     useEffect(() => {
         const fetchLocation=()=>{
         console.log("FETCH")
-        dispatch(fetchMapWeatherAsync({q: getDataKey(location)}))}
+            console.log(location)
+            console.log(getDataKey(location))
+        dispatch(fetchMapWeatherAsync({q: getDataKey(location),key:key}))}
         fetchLocation()
         const id = setInterval(fetchLocation, 300000)
         /*dispatch(setSearchedCity(

@@ -15,7 +15,7 @@ const initialState = {
 //ACTIONS
 export const fetchMapWeatherAsync = createAsyncThunk(
     `${SLICE_KEY}/fetch`,
-    ({q}) => getWeatherData({q}),//createGETRequest({params: {q}})//,
+    ({q,key}) => getWeatherData({q}),//createGETRequest({params: {q}})//,
 
 
 )
@@ -63,22 +63,22 @@ export const weatherMapSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchMapWeatherAsync.pending, (state, action) => {
-                if (!state.value[action.meta.arg.q]) {
-                    state.isLoading[action.meta.arg.q] = true;
+                if (!state.value[action.meta.arg.key]) {
+                    state.isLoading[action.meta.arg.key] = true;
                 }
             })
             .addCase(fetchMapWeatherAsync.fulfilled, (state, action) => {
                 console.log(action.payload)
-                state.value[action.meta.arg.q] = action.payload
-                state.isLoading[action.meta.arg.q] = false;
+                state.value[action.meta.arg.key] = action.payload
+                state.isLoading[action.meta.arg.key] = false;
                 console.log("ЗАНЕСЛИ В СТОР")
 
             })
             .addCase(fetchMapWeatherAsync.rejected, (state, action) => {
-                state.isLoading[action.meta.arg.q] = false;
+                state.isLoading[action.meta.arg.key] = false;
                 // @ts-ignore
                 console.log("ПОМИЛКА")
-                state.error[action.meta.arg.q] = action.error.status
+                state.error[action.meta.arg.key] = action.error.status
             });
     },
 });

@@ -55,10 +55,9 @@ const AddOrRemove = ({weatherData, width}) => {
                              weatherData.location.country)
                              .then((r) =>  {
                                  dispatch(fetchUserDashboardAsync({token:user.token}))
-                                 console.log("REMOVE")
-                                 console.log(weatherData)
-                                 console.log(`${weatherData.location.lat},${weatherData.location.lon}`)
-                                 dispatch(removeByProperties({name:weatherData.location.name, region:weatherData.location.region,country:weatherData.location.country})
+                                 dispatch(removeByKey(`${weatherData.location.lat},${weatherData.location.lon},${weatherData.location.cityName}`)
+                                     //`${city.city.latitude},${city.city.longitude},${city.city.cityName}`
+                                // dispatch(removeByProperties({name:weatherData.location.name, region:weatherData.location.region,country:weatherData.location.country})
                              //dispatch(removeByKey(`${weatherData.location.lat},${weatherData.location.lon}`)
 
                              )
