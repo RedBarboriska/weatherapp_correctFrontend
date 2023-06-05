@@ -54,7 +54,7 @@ const MapModal = ({onClose, defaultLocation = null}) => {
             <MapWrapper>
                 <MapViewer onClick={setSelectedPoint} defaultLocation={defaultLocation}/>
                 <ToolsWrapper>
-                    <input type='submit' onClick={onCloseHandler} value="OK"/>
+                    <input type='submit' onClick={onCloseHandler} value="Пошук"/>
                 </ToolsWrapper>
             </MapWrapper>
             <ModalBackground/>

@@ -20,6 +20,7 @@ import search_icon from "../../img/search_icon.png";
 import {Space} from "antd";
 import Search from "antd/es/input/Search";
 import SearchTools from "./SearchTools";
+import UserMenu from "./UserMenu";
 
 
 const Header = () => {
@@ -56,28 +57,13 @@ const Header = () => {
     return (<>
             <div className="App-header">
                 <div className="logo">Погодниця</div>
-                {/*user.isLogged && <div className="myCities" onClick={()=>{
-                    console.log("клік")
-                    dispatch(showMyCities())}}>Мої міста</div>*/}
 
-                {/*{geolocation.latitude !== "" && <div className="myCities" onClick={() => {
-                    console.log("клік")
-                    dispatch(changeCoords({latitude: geolocation.latitude, longitude: geolocation.longitude}))
-                }}>Моя геолокація</div>}*/}
                 <SearchTools/>
 
+
                 {user.token &&
-                    <div className="userName">
-                        <img src={user_icon} style={{width: "20px"}}/>
-                        <div>{user.userInfo.name}</div>
+                    <UserMenu/>}
 
-
-                    </div>}
-                {user.token && <div className="login" onClick={() => {
-                    dispatch(userSignOut())
-                    localStorage.removeItem('token');
-                    dispatch(removeAll())
-                }}>Вийти</div>}
                 {!user.token &&
 
                     <div className="login" onClick={() => setShowSigningForm(true)}>
@@ -87,22 +73,6 @@ const Header = () => {
 
             {showSigningForm &&
                 ReactDOM.createPortal(<SigningForm onClose={() => setShowSigningForm(false)}/>, document.body)}
-
-
-            {/*{showMapModal &&*/}
-            {/*    <MapModal defaultLocation={mapInitialLocation}*/}
-            {/*              onClose={(data) => {*/}
-            {/*                  if (data) {*/}
-            {/*                      fetchDataByQuery(data.latitude + ',' + data.longitude)*/}
-            {/*                  } else {*/}
-            {/*                      // fetchDataByQuery(mapInitialLocation.latitude + ',' + mapInitialLocation.longitude)*/}
-            {/*                      //спірно*/}
-            {/*                  }*/}
-            {/*                  console.log('map cords')*/}
-            {/*                  console.log(data)*/}
-            {/*                  setShowMapModal(false)*/}
-            {/*                  setInitialMap(null)*/}
-            {/*              }}></MapModal>}*/}
 
 
         </>

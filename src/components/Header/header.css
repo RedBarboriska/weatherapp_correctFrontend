@@ -9,7 +9,7 @@
     color: white;
 }
 
-.userName{
+.userNameContainer{
     /*border: 1px solid #3e5ea2;*/
     background: rgba(160, 155, 192, 0.3);
     padding: 5px;
@@ -22,10 +22,10 @@
     display: flex;
     flex-direction: row;
 }
-.userName img{
+.userNameContainer img{
     margin-right: 5px;
 }
-.userName div{
+.userNameContainer div{
     text-align: center;
     margin-right: 5px;
 }
