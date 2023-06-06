@@ -1,15 +1,15 @@
 import './searchTools.css';
-import search_icon from "../../img/search_icon.png";
-import {changeCityname, changeCoords} from "../../state/location.slice";
-import map_icon from "../../img/map_icon.png";
-import geolocation_icon from "../../img/geolocation_icon.png";
-import Header from "./Header";
+import search_icon from "../../../img/search_icon.png";
+import {changeCityname, changeCoords} from "../../../state/location.slice";
+import map_icon from "../../../img/map_icon.png";
+import geolocation_icon from "../../../img/geolocation_icon.png";
+import Header from "../Header";
 import ReactDOM from "react-dom";
-import MapModal from "../Map/MapModal";
-import {setInitialMap} from "../Map/maphelp";
+import MapModal from "./Map/MapModal";
+import {setInitialMap} from "./Map/maphelp";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {weatherDataSelector} from "../../state/weather.slice";
-import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
+import {weatherDataSelector} from "../../../state/weather.slice";
+import {getDataKey} from "../../WeatherWidget/weatherWidget.helpers";
 import {useState} from "react";
 
 const SearchTools = () => {

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {signIn, signUp} from "../../DBcalls/DBcalls";
+import {signIn, signUp} from "../../../DBcalls/DBcalls";
 import styled from "styled-components";
 
 const LoginWrapper = styled.div`

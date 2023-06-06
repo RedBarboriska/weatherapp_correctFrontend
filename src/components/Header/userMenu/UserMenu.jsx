@@ -1,11 +1,11 @@
-import MapViewer from "../Map/MapViewer";
+import MapViewer from "../searchTools/Map/MapViewer";
 import React, {useState} from "react";
-import user_icon from "../../img/user_icon.png";
+import user_icon from "../../../img/user_icon.png";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {weatherDataSelector} from "../../state/weather.slice";
-import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
-import {userSignOut} from "../../state/user.slice";
-import {removeAll} from "../../state/weatherMap.slice";
+import {weatherDataSelector} from "../../../state/weather.slice";
+import {getDataKey} from "../../WeatherWidget/weatherWidget.helpers";
+import {userSignOut} from "../../../state/user.slice";
+import {removeAll} from "../../../state/weatherMap.slice";
 import './userMenu.css';
 
 const UserMenu = () => {

@@ -2,9 +2,9 @@ import './App.css';
 import React, {useEffect, useRef, useState} from 'react';
 import {getForecastWeatherData, getWeatherData} from "./utils/api";
 import {getUserLocation} from "./utils/utils";
-import Login from "./components/Header/Login";
-import {buildMap, setInitialMap} from "./components/Map/maphelp";
-import MapModal from "./components/Map/MapModal";
+import Login from "./components/Header/signingForm/Login";
+import {buildMap, setInitialMap} from "./components/Header/searchTools/Map/maphelp";
+import MapModal from "./components/Header/searchTools/Map/MapModal";
 import styled from "styled-components";
 import axios from 'axios';
 //import Login from "./Login";
@@ -16,7 +16,7 @@ import formatDate from "./utils/formatDate";
 import LoadingSpinner from "./components/LoadingSpinner";
 import {Spin} from "antd";
 import {changeCoords} from "./state/location.slice";
-import SigningFrorm from "./components/Header/SigningForm";
+import SigningFrorm from "./components/Header/signingForm/SigningFormModal";
 
 
 //import setInitialMap from "./Map/maphelp";

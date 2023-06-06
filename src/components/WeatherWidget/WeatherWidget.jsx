@@ -81,8 +81,7 @@ console.log(weatherData, location)
     }, [location, dispatch]);
 
     return (<>
-            <WidgetWrapper
-            >
+
                 {geolocationError &&
                     <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
 
@@ -96,13 +95,7 @@ console.log(weatherData, location)
                 {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
                 {isLoading && <p>Завантаження...<LoadingSpinner/> </p>}
 
-                {/*{error!=={} && <div>За вашим запитом нічого не знайдено</div>}*/}
-            </WidgetWrapper>
-            {/*{modalVisible &&*/}
-            {/*    ReactDOM.createPortal(<MapModal defaultLocation={location} onClose={(data) => {*/}
-            {/*        setLocation(data)*/}
-            {/*        setModalVisible(false)*/}
-            {/*    }}/>, document.body)}*/}
+
         </>
     );
 

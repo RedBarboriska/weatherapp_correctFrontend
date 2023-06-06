@@ -1,26 +1,15 @@
 import './header.css';
-//import WeatherInfoMain from "../WeatherWidget/WeatherInfoMain";
-import MapModal from "../Map/MapModal";
-//import {setInitialMap} from "../Map/maphelp";
+
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {weatherDataSelector} from "../../state/weather.slice";
 import {getDataKey} from "../WeatherWidget/weatherWidget.helpers";
-import {changeCityname, changeCoords} from "../../state/location.slice";
-import SigningForm from "./SigningForm";
+import SigningFormModal from "./signingForm/SigningFormModal";
 import ReactDOM from "react-dom";
 import {fetchUserInfoAsync, userSignOut} from "../../state/user.slice";
 import React, {useEffect, useState} from "react";
-import {setInitialMap} from "../Map/maphelp";
-import {SearchOutlined} from "@ant-design/icons";
-import {removeAll} from "../../state/weatherMap.slice";
-import user_icon from "../../img/user_icon.png";
-import geolocation_icon from "../../img/geolocation_icon.png";
-import map_icon from "../../img/map_icon.png";
-import search_icon from "../../img/search_icon.png";
-import {Space} from "antd";
-import Search from "antd/es/input/Search";
-import SearchTools from "./SearchTools";
-import UserMenu from "./UserMenu";
+
+import SearchTools from "./searchTools/SearchTools";
+import UserMenu from "./userMenu/UserMenu";
 
 
 const Header = () => {
@@ -72,7 +61,7 @@ const Header = () => {
             </div>
 
             {showSigningForm &&
-                ReactDOM.createPortal(<SigningForm onClose={() => setShowSigningForm(false)}/>, document.body)}
+                ReactDOM.createPortal(<SigningFormModal onClose={() => setShowSigningForm(false)}/>, document.body)}
 
 
         </>

@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {getDashboard, getUserInfo, signIn} from "../../DBcalls/DBcalls";
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {getDashboard, getUserInfo, signIn} from "../../../DBcalls/DBcalls";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -8,7 +8,7 @@ import {
     setDashboard,
     setUserInfo,
     userSignIn
-} from "../../state/user.slice";
+} from "../../../state/user.slice";
 
 const LoginWrapper = styled.div`
   position: absolute;
@@ -22,7 +22,10 @@ const LoginWrapper = styled.div`
   justify-content: center;
 `
 
-const Login = () => {
+const Login = ({onClose}) => {
+    const onCloseHandler = useCallback(() => {
+        onClose();
+    }, [onClose]);
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [showMessageBox, setShowMessageBox] = useState(false)
@@ -41,11 +44,16 @@ const Login = () => {
                 <input type="password" placeholder="Введіть пароль" name="psw" value={password}
                        onChange={(e) => setPassword(e.target.value)} required/>
             </div>
-            <input type="submit" onClick={async () =>  dispatch(fetchUserSignInAsync({login:login, password:password})).then(response => {
-
+            <input type="submit" onClick={async () => dispatch(fetchUserSignInAsync({
+                login: login,
+                password: password
+            })).then(response => {
+                console.log("LOGIN response")
                 console.log(response)
                 console.log(user.error)
-
+                if (response?.payload?.data?.token) {
+                    onCloseHandler()
+                }
 
 
                 /*if (response.success) {
