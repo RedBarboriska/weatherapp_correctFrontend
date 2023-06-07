@@ -43,7 +43,7 @@ const AddOrRemove = ({weatherData, width}) => {
     return (<AddOrRemoveWrapper>
         {isCityPresent &&
 
-            <img src={minus} style={{ width: width, filter: 'brightness(0) saturate(100%) hue-rotate(120deg)' } }
+            <img src={minus} alt="minus_icon" style={{ width: width, filter: 'brightness(0) saturate(100%) hue-rotate(120deg)' } }
                  onClick = {
                      (event)=>{
                          event.stopPropagation()
@@ -64,7 +64,7 @@ const AddOrRemove = ({weatherData, width}) => {
                              }) } }
 
         />}
-        {!isCityPresent && <img src={plus} style={{ width: '30px', filter: 'hue-rotate(120deg)' }}
+        {!isCityPresent && <img alt="plus_icon" src={plus} style={{ width: '30px', filter: 'hue-rotate(120deg)' }}
 
                                 onClick = {
                                     (event)=>{

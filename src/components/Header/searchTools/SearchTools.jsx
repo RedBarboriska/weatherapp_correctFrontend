@@ -28,13 +28,13 @@ const SearchTools = () => {
                    placeholder="Введіть назву населеного пункту" value={city}
                    onChange={(e) => setCity(e.target.value)}/>
             <div className={"searchIcons"}>
-                <img src={search_icon} className="searchButton" onClick={() => {
+                <img alt="search_icon" src={search_icon} className="searchButton" onClick={() => {
                     if (city !== "") {
                         dispatch(changeCityname(city));
                     }
                 }}/>
-                <img src={map_icon} className="searchButton" onClick={() => setShowMapModal(true)}/>
-                {geolocation.latitude !== "" && <img src={geolocation_icon} className="searchButton"
+                <img alt="map_icon" src={map_icon} className="searchButton" onClick={() => setShowMapModal(true)}/>
+                {geolocation.latitude !== "" && <img alt="geolocation_icon" src={geolocation_icon} className="searchButton"
                                                      onClick={() => {
                                                          console.log("клік")
                                                          dispatch(changeCoords({

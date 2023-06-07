@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {getWeatherData} from "../DBcalls/DBcalls";
 //import {RootState} from "@reduxjs/toolkit/dist/query/core/apiState";
-import {getWeatherData} from "../utils/api";
+
 
 
 const SLICE_KEY = 'weather'

@@ -26,7 +26,7 @@ const UserMenu = () => {
 
         <div  className={"dropdown"}>
             <div className="userNameCont" onMouseOver={showLogout}>
-                <img src={user_icon} style={{width: "20px"}}/>
+                <img alt="user.icon" src={user_icon} style={{width: "20px"}}/>
                 <div>{user.userInfo.name}</div>
             </div>
 

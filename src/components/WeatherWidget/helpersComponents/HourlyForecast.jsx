@@ -89,24 +89,24 @@ export const HourlyForecast = ({data}) => {
                         <div>{item.time.substring(11, 16)}</div>
                         <div>{item.temp_c} °C</div>
                         <div>
-                            <img src={`https:${item.condition.icon}`}/>
+                            <img alt="condition.icon" src={`https:${item.condition.icon}`}/>
                         </div>
 
                        {/* <div>{item.condition.text}</div>*/}
                         <div>{item.last_updated}</div>
                         <div>
-                            <img src={waterDrop} style={{ width: '10px' }}/>
+                            <img alt="waterdrop_icon" src={waterDrop} style={{ width: '10px' }}/>
                             {item.humidity}%
                         </div>
                         {forecastParams.isPressure && <>
-                            <div><img src={pressure} style={{ width: '10px' }}/>
+                            <div><img alt="pressure_icon" src={pressure} style={{ width: '10px' }}/>
                                 {item.pressure_mb}</div>
                         </>}
                         {isWindKph && <>
                             <div>шв{item.wind_kph}</div>
                         </>}
                         { forecastParams.isChanceOfSnow && <div>
-                            <img src={snowflake} style={{ width: '10px' }}/>
+                            <img alt="snowflake_icon" src={snowflake} style={{ width: '10px' }}/>
                             {item.chance_of_snow}%</div>
 
                         }
@@ -160,7 +160,7 @@ function MyComponent1(data) {
                     <div>{item.condition.text}</div>
                     <div>{item.last_updated}</div>
                     <div>
-                        <img src={`https:${item.condition.icon}`}/>
+                        <img alt="condition.icon" src={`https:${item.condition.icon}`}/>
                     </div>
 
                 </HoursItems>

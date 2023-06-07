@@ -37,7 +37,7 @@ export const DailyForecast = ({weatherData}) => {
                     <div>{formatDate(item.date)}</div>
                     <div>{item.day.avgtemp_c} °C</div>
                     <div>
-                        <img src={`https:${item.day.condition.icon}`}/>
+                        <img alt="condition.icon" src={`https:${item.day.condition.icon}`}/>
                     </div>
 
                     <div>{item.day.condition.text}</div>

@@ -210,7 +210,7 @@ function App() {
 
                             </div>
                             <div className="wigetColumns2">
-                                <div className="degree">{data.current.temp_c}°C<img
+                                <div className="degree">{data.current.temp_c}°C<img alt="current.condition.icon"
                                     src={`https:${data.current.condition.icon}`}
                                 /></div>
                                 <div>{data.current.condition.text}</div>
@@ -229,7 +229,7 @@ function App() {
                     <div className="regionName">{data.location.region}</div>
                     <div className="regionName">{data.location.country}</div>
                     <div className="mainInfo">
-                        <div><img src={`https:${data.current.condition.icon}`}/></div>
+                        <div><img alt="current.condition.icon" src={`https:${data.current.condition.icon}`}/></div>
                         <div className="temperature">{data.current.temp_c}°C</div>
                     </div>
                     <div className="minmax">

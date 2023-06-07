@@ -1,4 +1,4 @@
-const KEY = '2c4bf9b50dec4d1eaad114823232704'
+
 const BASE_URL = 'http://api.weatherapi.com/v1/'
 
 export const getWeatherData = async (query) => {

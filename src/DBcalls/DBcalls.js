@@ -145,3 +145,12 @@ export const removeCity = async (token, cityName, cityRegion, cityCountry) => {
         return  {success: false};
     }
 }
+export const getWeatherData = async (query) => {
+    console.log(query)
+    const response = await axios.post('http://localhost:5000/weather/get-data', {query}, );
+    console.log("response.data");
+    console.log(response);
+    console.log(response.data);
+    console.log(response.data);
+    return  response.data;
+}

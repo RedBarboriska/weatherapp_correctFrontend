@@ -111,7 +111,7 @@ const key =`${city.city.latitude},${city.city.longitude},${city.city.cityName}`
                     <div>{String(weatherData?.forecast?.forecastday[0]?.day.maxtemp_c).split(".")[0]}°</div>
                     <div>{String(weatherData?.forecast?.forecastday[0]?.day.mintemp_c).split(".")[0]}°</div>
                 </div>
-                <img className={"imgDIV"} src={`https:${weatherData?.current?.condition?.icon}`}/>
+                <img alt="condition.icon" className={"imgDIV"} src={`https:${weatherData?.current?.condition?.icon}`}/>
             </div>
 
 

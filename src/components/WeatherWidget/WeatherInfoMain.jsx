@@ -78,7 +78,7 @@ const WeatherInfoMain = ({weatherData}) => {
                 </div>
                 <div className="wigetMain">
                     <div className="wigetColumns2">
-                        <div className="degree">{weatherData?.current.temp_c}°C<img
+                        <div className="degree">{weatherData?.current.temp_c}°C<img alt="condition.icon"
                             src={`https:${weatherData?.current.condition.icon}`}
                         /></div>
                         <div>{weatherData?.current.condition.text}</div>
