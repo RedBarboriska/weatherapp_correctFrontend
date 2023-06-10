@@ -96,27 +96,27 @@ const WeatherInfoMain = ({weatherData}) => {
 
                     </div>
                     <div className="wigetColumns1">
-                        <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
+                        <div> Макс: {weatherData?.forecast.forecastday[0].day.maxtemp_c}°C</div>
                         <hr/>
-                        <div className="wigetAttr">Відчувається як {weatherData?.current.feelslike_c}°C</div>
+                        <div className="wigetAttr">Мін: {weatherData?.forecast.forecastday[0].day.mintemp_c}°C</div>
                         <hr/>
-                        <div className="wigetAttr">Вологість: {weatherData?.current.humidity}%</div>
+                        <div className="wigetAttr">Швидкість вітру: {weatherData?.current.wind_kph}kph</div>
                         <hr/>
-                        <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
+                        <div className="wigetAttr">Максимальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}kph</div>
                         <hr/>
-                        <div className="wigetAttr">UV: {weatherData?.current.uv}</div>
+                        <div className="wigetAttr">Мінімальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}kph</div>
 
                     </div>
                     <div className="wigetColumns1">
-                        <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
+                        <div>Фаза:{weatherData?.forecast.forecastday[0].astro.moon_phase}</div>
                         <hr/>
-                        <div className="wigetAttr">Відчувається як {weatherData?.current.feelslike_c}°C</div>
+                        <div className="wigetAttr">Схід луни:{weatherData?.forecast.forecastday[0].astro.moonrise}</div>
                         <hr/>
-                        <div className="wigetAttr">Вологість: {weatherData?.current.humidity}%</div>
+                        <div className="wigetAttr">Захід луни:{weatherData?.forecast.forecastday[0].astro.moonset}</div>
                         <hr/>
-                        <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
+                        <div className="wigetAttr">Схід сонця: {weatherData?.forecast.forecastday[0].astro.sunrise}</div>
                         <hr/>
-                        <div className="wigetAttr">UV: {weatherData?.current.uv}</div>
+                        <div className="wigetAttr">Захід сонця: {weatherData?.forecast.forecastday[0].astro.sunset}</div>
 
                     </div>
                    {/* <DailyForecast weatherData={weatherData}/>
