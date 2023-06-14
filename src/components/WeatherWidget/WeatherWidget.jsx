@@ -17,9 +17,8 @@ import LoadingSpinner from "../LoadingSpinner";
 import {Skeleton} from "antd";
 
 
-
 const WidgetWrapper = styled.div`
-//придумати якісь стилі
+  //придумати якісь стилі
 `
 
 const WeatherWidget = () => {
@@ -36,30 +35,32 @@ const WeatherWidget = () => {
     console.log(weatherData)
     //const user = useSelector((state) => state.user)
     //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
-console.log(weatherData, location)
+    console.log(weatherData, location)
     console.log(error)
-    if (weatherData.location && !weatherData?.error?.message){
-    dispatch(setSearchedCity(
-        {cityName: weatherData.location.name,
-            cityRegion:weatherData.location.region,
-            cityCountry: weatherData.location.country }))}
+    if (weatherData.location && !weatherData?.error?.message) {
+        dispatch(setSearchedCity(
+            {
+                cityName: weatherData.location.name,
+                cityRegion: weatherData.location.region,
+                cityCountry: weatherData.location.country
+            }))
+    }
 
     useEffect(() => {
         const fetchLocation = () => {
             //видалити попереднє значення
             if (location.latitude !== "" && location.longitude !== "") {
-                    dispatch(fetchCurrentWeatherAsync({q: `${location.latitude},${location.longitude}`}))
-            } else if(location.cityName !== ""){
-                    dispatch(fetchCurrentWeatherAsync({q: `${location.cityName}`}))
-            }
-            else {
+                dispatch(fetchCurrentWeatherAsync({q: `${location.latitude},${location.longitude}`}))
+            } else if (location.cityName !== "") {
+                dispatch(fetchCurrentWeatherAsync({q: `${location.cityName}`}))
+            } else {
                 getLocationQuery(q => {
                     dispatch(changeCoords({latitude: q.latitude, longitude: q.longitude}))
                     console.log(location)
                     if (!q.error) {
                         console.log(q)
                         dispatch(setGeolocation({latitude: q.latitude, longitude: q.longitude}))
-                    }else{
+                    } else {
                         console.log(q)
                         setGeolocationError(true)
                         console.log(geolocationError)
@@ -82,18 +83,18 @@ console.log(weatherData, location)
 
     return (<>
 
-                {geolocationError &&
-                    <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
+            {geolocationError &&
+                <p>Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті</p>}
 
-                {!isLoading  && weatherData && !weatherData?.error?.message &&
-                    <>
+            {!isLoading && weatherData && !weatherData?.error?.message &&
+                <>
 
-                        <WeatherInfoMain weatherData={weatherData}/>
+                    <WeatherInfoMain weatherData={weatherData}/>
 
-                    </>
-                }
-                {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
-                {isLoading && <p>Завантаження...<LoadingSpinner/> </p>}
+                </>
+            }
+            {weatherData?.error?.message && <p>Помилка... {weatherData?.error?.message}</p>}
+            {isLoading && <p>Завантаження...<LoadingSpinner/></p>}
 
 
         </>

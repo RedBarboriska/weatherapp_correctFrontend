@@ -38,7 +38,11 @@ const key =`${city.city.latitude},${city.city.longitude},${city.city.cityName}`
     const isLoading = useSelector(state => isLoadingMapSelector(state, key), shallowEqual)
     const error = useSelector(state => weatherErrorMapSelector(state, key), shallowEqual)
     console.log(weatherData)
-    if(weatherData && weatherData.location?.name!==city.city.cityName && location.cityName!==city.city.cityName){
+    if(weatherData
+        && weatherData.location?.name!==city.city.cityName
+
+        && location.cityName!==city.city.cityName
+        ){
         console.log("INSIDE")
         console.log(weatherData)
         console.log(city.city.cityName)

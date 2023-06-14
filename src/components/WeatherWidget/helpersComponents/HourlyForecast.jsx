@@ -4,6 +4,8 @@ import {useSelector} from "react-redux";
 import snowflake from "../../../img/snowflake.png"
 import waterDrop from "../../../img/waterDrop.png"
 import pressure from "../../../img/pressure.png"
+import "../../../utils/scrollbar.css";
+
 const HoursContainer = styled.div`
   display: flex;
 
@@ -76,14 +78,15 @@ export const HourlyForecast = ({data}) => {
     }
 
     return (
-        <HoursWidget>
+        <HoursWidget class="container" >
             {/*<ItemsSelector>
                 <div>Атмосферний тиск:<input type="checkbox" name="Pressure_in"
                                              onChange={(e) => checkValue(e, setIsPressure)}/></div>
                 <div>Швидкість вітру:<input type="checkbox" name="Pressure_in"
                                             onChange={(e) => checkValue(e, setIsWindKph)}/></div>
             </ItemsSelector>*/}
-            <HoursContainer>
+            <HoursContainer class="scrollbar" id="scrollbar1">
+
                 {filteredData.map((item, index) => (
                     <HoursItems key={index} className="item" colorValue={item.cloud}>
                         <div>{item.time.substring(11, 16)}</div>

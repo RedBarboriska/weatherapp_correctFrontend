@@ -31,7 +31,7 @@ const MiniWeatherWidgetWrapper = styled.div`
   padding-top: 10px;
   //padding-left: 10px;
   //padding-bottom: 5px;
-  
+
 
 `
 
@@ -42,21 +42,21 @@ const MiniWeatherWidget = (onClick) => {
     //const [nextId, setNextId] = useState(1)
     //const [widgets, setWidgets] = useState([{id: nextId}])
     const dispatch = useDispatch()
-   /* const data = user.dashboardInfo.map((city) => ({
-        latitude: city.latitude,
-        longitude: city.longitude,
-    }));*/
+    /* const data = user.dashboardInfo.map((city) => ({
+         latitude: city.latitude,
+         longitude: city.longitude,
+     }));*/
 
     const searchedCity = useSelector((state) => state.searchedCity)
 
     useEffect(() => {
         //console.log(user.token)
-        dispatch(fetchUserDashboardAsync({token:user.token}))
-    },[user.token])
+        dispatch(fetchUserDashboardAsync({token: user.token}))
+    }, [user.token])
 
-   /*if(user.token){
-       console.log(user.token)
-    dispatch(fetchUserDashboardAsync(user.token))}*/
+    /*if(user.token){
+        console.log(user.token)
+     dispatch(fetchUserDashboardAsync(user.token))}*/
 
     //`${location?.latitude},${location?.longitude}`
     //const weatherData = useSelector(state => weatherDataSelector(state, getDataKey(location)), shallowEqual)
@@ -66,35 +66,34 @@ const MiniWeatherWidget = (onClick) => {
     return (<>
 
         {user.token &&
-        <MiniWeatherWidgetWrapper>
-            {user.dashboardInfo
+            <MiniWeatherWidgetWrapper>
+                {user.dashboardInfo
 
-                .map((city, index) => {
-               // const city = item;
-                   // console.log("CITY")
-                   // console.log(index)
-                   // console.log(city)
-                   // console.log(city.city)
+                    .map((city, index) => {
+                        // const city = item;
+                        // console.log("CITY")
+                        // console.log(index)
+                        // console.log(city)
+                        // console.log(city.city)
 
-                const isSelected = (city.cityName === searchedCity.cityName &&
-                    city.cityRegion === searchedCity.cityRegion &&
-                    city.cityCountry === searchedCity.cityCountry)
-                    console.log("isSelectedisSelected")
-                console.log(isSelected)
-                console.log(city)
-                return (
+                        const isSelected = (city.cityName === searchedCity.cityName &&
+                            city.cityRegion === searchedCity.cityRegion &&
+                            city.cityCountry === searchedCity.cityCountry)
+                        console.log("isSelectedisSelected")
+                        console.log(isSelected)
+                        console.log(city)
+                        return (
 
-                    <MiniWeatherWidgetInfo
-                        key={`${city.cityName}${city.latitude}${city.longitude}`}
-                        city={city}
-                        isSelected={isSelected}
+                            <MiniWeatherWidgetInfo
+                                key={`${city.cityName}${city.latitude}${city.longitude}`}
+                                city={city}
+                                isSelected={isSelected}
 
-                    />
+                            />
 
-                );
-            })}
-        </MiniWeatherWidgetWrapper>}
-
+                        );
+                    })}
+            </MiniWeatherWidgetWrapper>}
 
 
     </>)
@@ -103,11 +102,11 @@ const MiniWeatherWidget = (onClick) => {
 
 export default MiniWeatherWidget
 
-    /*.filter(city =>
-        !(city.cityName === searchedCity.cityName &&
-            city.cityRegion === searchedCity.cityRegion &&
-            city.cityCountry === searchedCity.cityCountry)
-    )*/
+/*.filter(city =>
+    !(city.cityName === searchedCity.cityName &&
+        city.cityRegion === searchedCity.cityRegion &&
+        city.cityCountry === searchedCity.cityCountry)
+)*/
 /*
                         //data={
                         //dispatch(fetchCurrentWeatherAsync({ q: `${city.latitude},${city.longitude}`}))

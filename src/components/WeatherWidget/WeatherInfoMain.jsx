@@ -10,7 +10,9 @@ import {HourlyForecast} from "./helpersComponents/HourlyForecast";
 import {DailyForecast} from "./helpersComponents/DailyForecast";
 import {changeIsChanceOfSnow, changeIsPressure} from "../../state/forecastParams.slice";
 import AddOrRemove from "../AddOrRemove";
-import {setSearchedCity} from "../../state/searchedCity.slice";
+import {Tooltip, Typography} from "antd";
+import {tooltipClasses} from "@mui/material";
+import UV from "./helpersComponents/UV";
 
 
 const ForecastParamsWrapper = styled.div`
@@ -19,13 +21,37 @@ const ForecastParamsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   text-align: left;
-  padding-left: 10px;//вилазить!!!
- box-sizing: border-box;
+  padding-left: 10px; //вилазить!!!
+  box-sizing: border-box;
   padding-bottom: 5px;
 
 `
 
+const HtmlTooltip = styled(({className, ...props}) => (
+    <Tooltip {...props} classes={{popper: className}}/>
+))(({theme}) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: '#f5f5f9',
+        color: 'rgba(0, 0, 0, 0.87)',
+        maxWidth: 220,
+        border: '1px solid #dadde9',
+    },
+}));
+
+
 const WeatherInfoMain = ({weatherData}) => {
+
+    let backgroundColor;
+
+    if (weatherData && weatherData.current.uv >= 1 && weatherData.current.uv <= 2) {
+        backgroundColor = 'rgba(184, 255, 147, 0.3)'; // Колір для UV 1-2
+    } else if (weatherData && weatherData.current.uv >= 3 && weatherData.current.uv <= 5) {
+        backgroundColor = 'rgba(255, 248, 65, 0.3)'; // Колір для UV 3-5
+    } else if (weatherData && weatherData.current.uv >= 6 && weatherData.current.uv <= 10) {
+        backgroundColor = 'rgba(255, 150, 28, 0.3)'; // Колір для UV 6-10
+    } else {
+        backgroundColor = 'rgba(255, 0, 0, 0.3)'; // Колір за замовчуванням
+    }
 
     const forecastParams = useSelector((state) => state.forecastParams)
     const user = useSelector((state) => state.user)
@@ -34,26 +60,26 @@ const WeatherInfoMain = ({weatherData}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-       // if(forecastParams.isPressure){
+        // if(forecastParams.isPressure){
         //
-       // }
+        // }
     })
-/*    const isCityPresent = user.dashboardInfo.some(
-        city =>
-            (city.cityName === data.location.name &&
-                city.cityRegion === data.location.region &&
-                city.cityCountry === data.location.country) || (
+    /*    const isCityPresent = user.dashboardInfo.some(
+            city =>
+                (city.cityName === data.location.name &&
+                    city.cityRegion === data.location.region &&
+                    city.cityCountry === data.location.country) || (
 
-                city.latitude === {
-                    $gte: parseFloat(geolocation.latitude) - 0.2,
-                    $lte: parseFloat(geolocation.latitude) + 0.2
-                },
-                city.longitude === {
-                    $gte: parseFloat(geolocation.longitude) - 0.2,
-                    $lte: parseFloat(geolocation.longitude) + 0.2
-                }
-            )
-    );*/
+                    city.latitude === {
+                        $gte: parseFloat(geolocation.latitude) - 0.2,
+                        $lte: parseFloat(geolocation.latitude) + 0.2
+                    },
+                    city.longitude === {
+                        $gte: parseFloat(geolocation.longitude) - 0.2,
+                        $lte: parseFloat(geolocation.longitude) + 0.2
+                    }
+                )
+        );*/
 
     return (
         <div className="mainWeatherWidget">
@@ -61,9 +87,10 @@ const WeatherInfoMain = ({weatherData}) => {
                 <div className="wigetCityDiv">
                     <div className="wigetCityName">{weatherData?.location.name}</div>
                     <div className="wigetCityReg">{weatherData?.location.region}, {weatherData?.location.country} </div>
-                    <div className="AddOrRemove">{user.token&&<AddOrRemove weatherData={weatherData} width={"30px"}/> }</div>
+                    <div className="AddOrRemove">{user.token &&
+                        <AddOrRemove weatherData={weatherData} width={"30px"}/>}</div>
 
-                  {/*  {user.isLogged && <>
+                    {/*  {user.isLogged && <>
                         {isCityPresent ? (
                             <input type="submit"
                                    onClick={async () => await dispatch(removeCity(user.userInfo.login, data.location.name, data.location.region, data.location.country))}
@@ -79,9 +106,25 @@ const WeatherInfoMain = ({weatherData}) => {
                 <div className="wigetMain">
                     <div className="wigetColumns2">
                         <div className="degree">{weatherData?.current.temp_c}°C<img alt="condition.icon"
-                            src={`https:${weatherData?.current.condition.icon}`}
+                                                                                    src={`https:${weatherData?.current.condition.icon}`}
                         /></div>
                         <div>{weatherData?.current.condition.text}</div>
+                        <div>
+                            <div>Макс....{weatherData?.forecast.forecastday[0].day.maxtemp_c}°</div>
+                            <div>Мін......{weatherData?.forecast.forecastday[0].day.mintemp_c}°</div>
+                        </div>
+                        {/*<div className="minmaxContainer">
+                            <div className="minmaxTemp">
+                                <div className="minmaxName">Мін</div>
+                                <div className="minmaxValue">{weatherData?.forecast.forecastday[0].day.mintemp_c}°</div>
+                            </div>
+                            <div className="minmaxTemp">
+                                <div className="minmaxName">Макс</div>
+                                <div className="minmaxValue">{weatherData?.forecast.forecastday[0].day.maxtemp_c}°</div>
+                            </div>
+                        </div>*/}
+
+
                     </div>
                     <div className="wigetColumns1">
                         <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
@@ -92,7 +135,18 @@ const WeatherInfoMain = ({weatherData}) => {
                         <hr/>
                         <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
                         <hr/>
-                        <div className="wigetAttr">UV: {weatherData?.current.uv}</div>
+                        <UV uv={weatherData?.current.uv}/>
+                        {/*<HtmlTooltip
+                            title={
+                                <React.Fragment>
+                                    <Typography color="inherit">Tooltip with HTML</Typography>
+                                    <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+                                    {"It's very engaging. Right?"}
+                                </React.Fragment>
+                            }
+                        >
+                            <div className="wigetAttr" style={{backgroundColor}}>UV: {weatherData?.current.uv}</div>
+                        </HtmlTooltip>*/}
 
                     </div>
                     <div className="wigetColumns1">
@@ -102,54 +156,62 @@ const WeatherInfoMain = ({weatherData}) => {
                         <hr/>
                         <div className="wigetAttr">Швидкість вітру: {weatherData?.current.wind_kph}kph</div>
                         <hr/>
-                        <div className="wigetAttr">Максимальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}kph</div>
+                        <div
+                            className="wigetAttr">Максимальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}kph
+                        </div>
                         <hr/>
-                        <div className="wigetAttr">Мінімальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}kph</div>
+                        <div
+                            className="wigetAttr">Мінімальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}kph
+                        </div>
 
                     </div>
                     <div className="wigetColumns1">
+
                         <div>Фаза:{weatherData?.forecast.forecastday[0].astro.moon_phase}</div>
                         <hr/>
                         <div className="wigetAttr">Схід луни:{weatherData?.forecast.forecastday[0].astro.moonrise}</div>
                         <hr/>
                         <div className="wigetAttr">Захід луни:{weatherData?.forecast.forecastday[0].astro.moonset}</div>
                         <hr/>
-                        <div className="wigetAttr">Схід сонця: {weatherData?.forecast.forecastday[0].astro.sunrise}</div>
+                        <div className="wigetAttr">Схід
+                            сонця: {weatherData?.forecast.forecastday[0].astro.sunrise}</div>
                         <hr/>
-                        <div className="wigetAttr">Захід сонця: {weatherData?.forecast.forecastday[0].astro.sunset}</div>
+                        <div className="wigetAttr">Захід
+                            сонця: {weatherData?.forecast.forecastday[0].astro.sunset}</div>
 
                     </div>
-                   {/* <DailyForecast weatherData={weatherData}/>
+                    {/* <DailyForecast weatherData={weatherData}/>
                     <DailyForecast weatherData={weatherData}/>*/}
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>
             <ForecastParamsWrapper>
                 Атмосферний тиск:<input type="checkbox" name="at"
-                                  onChange={() => {
-                                      dispatch(changeIsPressure())
-                                      if (JSON.parse(localStorage.getItem('isPressure'))) {
-                                          localStorage.setItem('isPressure', JSON.stringify(false));
-                                      } else {
-                                          localStorage.setItem('isPressure', JSON.stringify(true));
-                                      }
+                                        onChange={() => {
+                                            dispatch(changeIsPressure())
+                                            if (JSON.parse(localStorage.getItem('isPressure'))) {
+                                                localStorage.setItem('isPressure', JSON.stringify(false));
+                                            } else {
+                                                localStorage.setItem('isPressure', JSON.stringify(true));
+                                            }
 // dispatch(changeIsPressure())
-                                  }}
-                                  checked={JSON.parse(localStorage.getItem('isPressure')) === true}/>
-                Ймовірність випадання снігу:<input type="checkbox" name="isSnow"
-                                                     onChange={() =>{ dispatch(changeIsChanceOfSnow())
-                                                         if (JSON.parse(localStorage.getItem('isChanceOfSnow'))) {
-                                                             localStorage.setItem('isChanceOfSnow', JSON.stringify(false));
-                                                         } else {
-                                                             localStorage.setItem('isChanceOfSnow', JSON.stringify(true));
-                                                         }
-                                                     }
+                                        }}
+                                        checked={JSON.parse(localStorage.getItem('isPressure')) === true}/>
+                Ймовірність випадіння снігу:<input type="checkbox" name="isSnow"
+                                                   onChange={() => {
+                                                       dispatch(changeIsChanceOfSnow())
+                                                       if (JSON.parse(localStorage.getItem('isChanceOfSnow'))) {
+                                                           localStorage.setItem('isChanceOfSnow', JSON.stringify(false));
+                                                       } else {
+                                                           localStorage.setItem('isChanceOfSnow', JSON.stringify(true));
+                                                       }
+                                                   }
 
-                }
-                                                     checked={JSON.parse(localStorage.getItem('isChanceOfSnow')) === true}/>
+                                                   }
+                                                   checked={JSON.parse(localStorage.getItem('isChanceOfSnow')) === true}/>
 
             </ForecastParamsWrapper>
-          <HourlyForecast data={weatherData}/>
+            <HourlyForecast data={weatherData}/>
 
         </div>
 

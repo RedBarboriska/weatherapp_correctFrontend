@@ -10,6 +10,7 @@ import React, {useEffect, useState} from "react";
 
 import SearchTools from "./searchTools/SearchTools";
 import UserMenu from "./userMenu/UserMenu";
+import FadeMenu from "./userMenu/FadeMenu";
 
 
 const Header = () => {
@@ -51,7 +52,9 @@ const Header = () => {
 
 
                 {user.token &&
-                    <UserMenu/>}
+                   /* <UserMenu/>*/
+                    <FadeMenu/>
+                }
 
                 {!user.token &&
 

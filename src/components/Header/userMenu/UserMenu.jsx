@@ -7,6 +7,7 @@ import {getDataKey} from "../../WeatherWidget/weatherWidget.helpers";
 import {userSignOut} from "../../../state/user.slice";
 import {removeAll} from "../../../state/weatherMap.slice";
 import './userMenu.css';
+import FadeMenu from "./FadeMenu";
 
 const UserMenu = () => {
     function showLogout() {
@@ -25,6 +26,7 @@ const UserMenu = () => {
     return (
 
         <div  className={"dropdown"}>
+
             <div className="userNameCont" onMouseOver={showLogout}>
                 <img alt="user.icon" src={user_icon} style={{width: "20px"}}/>
                 <div>{user.userInfo.name}</div>
