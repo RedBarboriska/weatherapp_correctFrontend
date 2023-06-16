@@ -5,6 +5,7 @@ import snowflake from "../../../img/snowflake.png"
 import waterDrop from "../../../img/waterDrop.png"
 import pressure from "../../../img/pressure.png"
 import "../../../utils/scrollbar.css";
+import UV from "./UV";
 
 const HoursContainer = styled.div`
   display: flex;
@@ -101,19 +102,21 @@ export const HourlyForecast = ({data}) => {
                             <img alt="waterdrop_icon" src={waterDrop} style={{ width: '10px' }}/>
                             {item.humidity}%
                         </div>
-                        {forecastParams.isPressure && <>
-                            <div><img alt="pressure_icon" src={pressure} style={{ width: '10px' }}/>
-                                {item.pressure_mb}</div>
-                        </>}
+                        <div><img alt="pressure_icon" src={pressure} style={{ width: '10px' }}/>
+                            {item.pressure_mb}</div>
                         {isWindKph && <>
                             <div>шв{item.wind_kph}</div>
                         </>}
                         { forecastParams.isChanceOfSnow && <div>
+
                             <img alt="snowflake_icon" src={snowflake} style={{ width: '10px' }}/>
-                            {item.chance_of_snow}%</div>
-
-                        }
-
+                            {item.chance_of_snow}%
+                        </div>}
+                        {forecastParams.isPressure && <>
+                            <UV uv={item.uv}/>
+                            {/*<div><img alt="pressure_icon" src={pressure} style={{ width: '10px' }}/>
+                                {item.pressure_mb}</div>*/}
+                        </>}
                     </HoursItems>
                 ))}
 

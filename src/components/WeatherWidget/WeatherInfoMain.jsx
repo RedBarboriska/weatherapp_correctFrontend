@@ -64,22 +64,7 @@ const WeatherInfoMain = ({weatherData}) => {
         //
         // }
     })
-    /*    const isCityPresent = user.dashboardInfo.some(
-            city =>
-                (city.cityName === data.location.name &&
-                    city.cityRegion === data.location.region &&
-                    city.cityCountry === data.location.country) || (
 
-                    city.latitude === {
-                        $gte: parseFloat(geolocation.latitude) - 0.2,
-                        $lte: parseFloat(geolocation.latitude) + 0.2
-                    },
-                    city.longitude === {
-                        $gte: parseFloat(geolocation.longitude) - 0.2,
-                        $lte: parseFloat(geolocation.longitude) + 0.2
-                    }
-                )
-        );*/
 
     return (
         <div className="mainWeatherWidget">
@@ -90,18 +75,6 @@ const WeatherInfoMain = ({weatherData}) => {
                     <div className="AddOrRemove">{user.token &&
                         <AddOrRemove weatherData={weatherData} width={"30px"}/>}</div>
 
-                    {/*  {user.isLogged && <>
-                        {isCityPresent ? (
-                            <input type="submit"
-                                   onClick={async () => await dispatch(removeCity(user.userInfo.login, data.location.name, data.location.region, data.location.country))}
-                                   value="Мінус"/>
-
-                        ) : (
-                            <input type="submit"
-                                   onClick={async () => await dispatch(addCity(user.userInfo.login, data.location.name, data.location.region, data.location.country, data.location.lat, data.location.lon))}
-                                   value="Плюс"/>
-                        )}
-                    </>}*/}
                 </div>
                 <div className="wigetMain">
                     <div className="wigetColumns2">
@@ -136,17 +109,7 @@ const WeatherInfoMain = ({weatherData}) => {
                         <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
                         <hr/>
                         <UV uv={weatherData?.current.uv}/>
-                        {/*<HtmlTooltip
-                            title={
-                                <React.Fragment>
-                                    <Typography color="inherit">Tooltip with HTML</Typography>
-                                    <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
-                                    {"It's very engaging. Right?"}
-                                </React.Fragment>
-                            }
-                        >
-                            <div className="wigetAttr" style={{backgroundColor}}>UV: {weatherData?.current.uv}</div>
-                        </HtmlTooltip>*/}
+
 
                     </div>
                     <div className="wigetColumns1">
@@ -188,23 +151,12 @@ const WeatherInfoMain = ({weatherData}) => {
                         </div>
 
                     </div>
-                    {/* <DailyForecast weatherData={weatherData}/>
-                    <DailyForecast weatherData={weatherData}/>*/}
+                   
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>
             <ForecastParamsWrapper>
-                Атмосферний тиск:<input type="checkbox" name="at"
-                                        onChange={() => {
-                                            dispatch(changeIsPressure())
-                                            if (JSON.parse(localStorage.getItem('isPressure'))) {
-                                                localStorage.setItem('isPressure', JSON.stringify(false));
-                                            } else {
-                                                localStorage.setItem('isPressure', JSON.stringify(true));
-                                            }
-// dispatch(changeIsPressure())
-                                        }}
-                                        checked={JSON.parse(localStorage.getItem('isPressure')) === true}/>
+
                 Ймовірність випадіння снігу:<input type="checkbox" name="isSnow"
                                                    onChange={() => {
                                                        dispatch(changeIsChanceOfSnow())
@@ -217,7 +169,17 @@ const WeatherInfoMain = ({weatherData}) => {
 
                                                    }
                                                    checked={JSON.parse(localStorage.getItem('isChanceOfSnow')) === true}/>
-
+                UV-індекс:<input type="checkbox" name="at"
+                                 onChange={() => {
+                                     dispatch(changeIsPressure())
+                                     if (JSON.parse(localStorage.getItem('isPressure'))) {
+                                         localStorage.setItem('isPressure', JSON.stringify(false));
+                                     } else {
+                                         localStorage.setItem('isPressure', JSON.stringify(true));
+                                     }
+// dispatch(changeIsPressure())
+                                 }}
+                                 checked={JSON.parse(localStorage.getItem('isPressure')) === true}/>
             </ForecastParamsWrapper>
             <HourlyForecast data={weatherData}/>
 
