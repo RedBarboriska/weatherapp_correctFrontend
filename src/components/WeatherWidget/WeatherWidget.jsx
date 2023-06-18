@@ -25,16 +25,13 @@ const WeatherWidget = () => {
     const dispatch = useDispatch()
     const location = useSelector((state) => state.location)
 
-    //const [location, setLocation] = useState(null);
-    const [modalVisible, setModalVisible] = useState(false)
     const [geolocationError, setGeolocationError] = useState(false)
 
     const weatherData = useSelector(state => weatherDataSelector(state), shallowEqual)
     const isLoading = useSelector(state => isLoadingSelector(state), shallowEqual)
     const error = useSelector(state => weatherErrorSelector(state), shallowEqual)
     console.log(weatherData)
-    //const user = useSelector((state) => state.user)
-    //const geolocationError = useSelector(state => weatherErrorSelector(state, getDataKey(location)), shallowEqual)
+
     console.log(weatherData, location)
     console.log(error)
     if (weatherData.location && !weatherData?.error?.message) {
@@ -71,10 +68,7 @@ const WeatherWidget = () => {
         }
         fetchLocation()
         const id = setInterval(fetchLocation, 300000)
-        /*dispatch(setSearchedCity(
-            {cityName: weatherData?.location.name,
-                cityRegion:weatherData?.location.region,
-                cityCountry: weatherData?.location.country }))*/
+
 
         return () => {
             clearInterval(id)
@@ -104,18 +98,3 @@ const WeatherWidget = () => {
 
 export default WeatherWidget
 
-/*
-{isLoading && <>
-                {geoError && "Дозвольте доступ до Вашого місцезнаходження, щоб отримати прогноз погоди у Вашому місті"}
-                {!geoError && <p>Завантаження... </p>}
-            </>}
-            {!isLoading && searchError && <>
-                <div>За вашим запитом нічого не знайдено</div>
-            </>}
-
-*/
-
-/*
-
-
- */

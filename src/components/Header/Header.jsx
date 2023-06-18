@@ -7,10 +7,11 @@ import SigningFormModal from "./signingForm/SigningFormModal";
 import ReactDOM from "react-dom";
 import {fetchUserInfoAsync, userSignOut} from "../../state/user.slice";
 import React, {useEffect, useState} from "react";
-
+import logo from "../../img/logo.png"
 import SearchTools from "./searchTools/SearchTools";
 import UserMenu from "./userMenu/UserMenu";
 import FadeMenu from "./userMenu/FadeMenu";
+import minus from "../../img/minus.png";
 
 
 const Header = () => {
@@ -46,7 +47,9 @@ const Header = () => {
 
     return (<>
             <div className="App-header">
-                <div className="logo">Погодниця</div>
+
+                <img title="Логотип" src={logo} alt="Логотип" style={{ height: '50px' , padding:"5px"}}/>
+                <div className="logo"> {/*<img title="Логотип" src={logo} alt="Логотип" style={{ height: '50px' }}/>*/}{/*Погодниця*/}</div>
 
                 <SearchTools/>
 

@@ -40,6 +40,14 @@
 .wigetAttr {
     /*border: 2px solid #3e5ea2;*/
 }
+.wigetAttr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right {
+    margin-left: auto;
+}
 
 .minmaxContainer {
     border: 2px solid #3e5ea2;

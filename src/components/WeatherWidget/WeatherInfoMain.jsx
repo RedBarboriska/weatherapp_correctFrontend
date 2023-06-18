@@ -102,29 +102,75 @@ const WeatherInfoMain = ({weatherData}) => {
                     <div className="wigetColumns1">
                         <div>{formatDate(weatherData?.current.last_updated)} {weatherData?.current.last_updated.substring(11, 16)}</div>
                         <hr/>
-                        <div className="wigetAttr">Відчувається як {weatherData?.current.feelslike_c}°C</div>
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Відчувається як:
+                            </div>
+                            <div className="right">
+                                {weatherData?.current.feelslike_c}°C
+                            </div>
+                        </div>
                         <hr/>
-                        <div className="wigetAttr">Вологість: {weatherData?.current.humidity}%</div>
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Вологість:
+                            </div>
+                            <div className="right">
+                                {weatherData?.current.humidity}%
+                            </div>
+                        </div>
                         <hr/>
-                        <div className="wigetAttr">Хмарність: {weatherData?.current.cloud}%</div>
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Хмарність:
+                            </div>
+                            <div className="right">
+                                {weatherData?.current.cloud}%
+                            </div>
+                        </div>
                         <hr/>
                         <UV uv={weatherData?.current.uv}/>
 
 
                     </div>
                     <div className="wigetColumns1">
-                        <div>
-                            Кількість опадів: {weatherData?.current.precip_mm}мм
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Кількість опадів:
+                            </div>
+                            <div className="right">
+                                {weatherData?.current.precip_mm}мм
+                            </div>
+
                         </div>
                         <hr/>
-                        <div
-                            className="wigetAttr">Видимість: {weatherData?.current.vis_km}км
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Видимість:
+                            </div>
+                            <div className="right">
+                                {weatherData?.current.vis_km}км
+                            </div>
                         </div>
                         <hr/>
-                        <div className="wigetAttr">Швидкість вітру: {weatherData?.current.wind_kph}км/год</div>
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Швидкість вітру:
+                            </div>
+                            <div className="right">
+                                {weatherData?.current.wind_kph}км/год
+                            </div>
+
+                        </div>
                         <hr/>
-                        <div
-                            className="wigetAttr">Максимальна: {weatherData?.forecast.forecastday[0].day.maxwind_kph}км/год
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Максимальна:
+                            </div>
+                            <div className="right">
+                                {weatherData?.forecast.forecastday[0].day.maxwind_kph}км/год
+                            </div>
+
                         </div>
                         <hr/>
 
@@ -132,26 +178,62 @@ const WeatherInfoMain = ({weatherData}) => {
                     </div>
                     <div className="wigetColumns1">
 
-                        <div>Фаза:{weatherData?.forecast.forecastday[0].astro.moon_phase}</div>
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Фаза:
+                            </div>
+                            <div className="right">
+                                {weatherData?.forecast.forecastday[0].astro.moon_phase}
+                            </div>
+
+                           </div>
                         <hr/>
-                        <div className="wigetAttr">Схід
-                            місяця: {moment(weatherData?.forecast.forecastday[0].astro.moonrise, 'hh:mm A').format('HH:mm')}
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Схід місяця:
+                            </div>
+                            <div className="right">
+                                {moment(weatherData?.forecast.forecastday[0].astro.moonrise, 'hh:mm A').format('HH:mm')}
+                            </div>
+
                         </div>
                         <hr/>
-                        <div className="wigetAttr">Захід
-                            місяця: {moment(weatherData?.forecast.forecastday[0].astro.moonset, 'hh:mm A').format('HH:mm')}
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Захід
+                                місяця:
+                            </div>
+                            <div className="right">
+                                {moment(weatherData?.forecast.forecastday[0].astro.moonset, 'hh:mm A').format('HH:mm')}
+                            </div>
+
                         </div>
                         <hr/>
-                        <div className="wigetAttr">Схід
-                            сонця: {moment(weatherData?.forecast.forecastday[0].astro.sunrise, 'hh:mm A').format('HH:mm')}
+                        <div className="wigetAttr">
+
+                            <div className="left">
+                                Схід
+                                сонця:
+                            </div>
+                            <div className="right">
+                                {moment(weatherData?.forecast.forecastday[0].astro.sunrise, 'hh:mm A').format('HH:mm')}
+                            </div>
+
+
                         </div>
                         <hr/>
-                        <div className="wigetAttr">Захід
-                            сонця: {moment(weatherData?.forecast.forecastday[0].astro.sunset, 'hh:mm A').format('HH:mm')}
+                        <div className="wigetAttr">
+                            <div className="left">
+                                Захід
+                                сонця:
+                            </div>
+                            <div className="right">
+                                {moment(weatherData?.forecast.forecastday[0].astro.sunset, 'hh:mm A').format('HH:mm')}
+                            </div>
                         </div>
 
                     </div>
-                   
+
                     <DailyForecast weatherData={weatherData}/>
                 </div>
             </div>

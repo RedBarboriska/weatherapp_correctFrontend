@@ -100,7 +100,7 @@ const UV = ({ uv }) => {
                 </React.Fragment>
             }
         >
-            <div className="wigetAttr" style={{ backgroundColor }}>
+            <div  style={{ backgroundColor }}>
                 UV: {uv}
             </div>
         </StyledTooltip>
