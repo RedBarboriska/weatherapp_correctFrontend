@@ -32,18 +32,7 @@ const Header = () => {
         dispatch(fetchUserInfoAsync({token: user.token}))
 
     }, [user.token])
-    /*console.log(weatherData?.location?.lat)
-    console.log(geolocation)
-    console.log(geolocation.latitude)
-    console.log(geolocation.longitude)*/
-    /*  const onCloseHandler = useCallback(() => {
-          onClose(selectedPoint);
-      }, [onClose, selectedPoint]);*/
-    /* const handleClick = () => {
-         console.log('clicked')
-         setShowMapModal(true)
 
-     }*/
 
     return (<>
             <div className="App-header">

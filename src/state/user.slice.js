@@ -95,12 +95,7 @@ export const userSlice = createSlice({
              state.dashboardInfo = action.payload
              })
 
-         /*             .addCase(fetchAddCityAsync.fulfilled, (state, action) => {
-                      state.dashboardInfo = action.payload.data
-                      })
-                      .addCase(fetchRemoveCityAsync.fulfilled, (state, action) => {
-                      state.dashboardInfo = action.payload.data
-                      })*/
+
 
 
          ;

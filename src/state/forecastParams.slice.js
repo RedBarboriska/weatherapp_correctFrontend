@@ -30,23 +30,7 @@ export const forecastParamsSlice = createSlice({
         }
 
     },
-    /* extraReducers: (builder) => { //зв'язатися з дб і отримати дані
-         builder
-             .addCase(fetchCurrentWeatherAsync.pending, (state, action) => {
-                 if (!state.value) {
-                     state.isLoading = true;
-                 }
-             })
-             .addCase(fetchCurrentWeatherAsync.fulfilled, (state, action) => {
-                 state.isLoading = false;
-                 state.value = action.payload.data
-             })
-             .addCase(fetchCurrentWeatherAsync.rejected, (state, action) => {
-                 state.isLoading = false;
-                 // @ts-ignore
-                 state.error = action.error.status
-             });
-     },*/
+
 })
 
 // Action creators are generated for each case reducer function

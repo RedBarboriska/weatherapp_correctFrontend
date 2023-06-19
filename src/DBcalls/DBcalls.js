@@ -50,39 +50,9 @@ export const getUserInfo = async (token) => {
     console.log(response)
         console.log(response.data);
         return  {data: response.data};
-        // setLoginData(response.data);
-        // setIsLogged(true);
-        // console.log(isLogged);
-     /*  axios.post('http://localhost:5000/api/me', {}, {
-        headers: {
-            'Authorization': token
-        }
-    })
-        .then(response => {
-            console.log(response.data);
-            /!*if (response.status === 200) {
-                dispatch(setUserInfo(response.data))
-            }
-            //null*!/
-        })
-        .catch(error => {
-            console.error(error);
-        });*/
+
 }
 
-/*export const getUserInfo = async (login) => {
-    axios.post('http://localhost:5000/api/me', {login})
-        .then(response => {
-            console.log(response.data);
-            if (response.status === 200) {
-                dispatch(setUserInfo(response.data))
-            }
-            //null
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}*/
 
 export const getDashboard = async (token) => {
     console.log(token)
@@ -98,21 +68,6 @@ export const getDashboard = async (token) => {
 }
 
 
-/*
-export const getDashboard = async (login) => {
-    axios.post('http://localhost:5000/api/mydashboard', {login})
-        .then(response => {
-            console.log(response.data);
-            if (response.status === 200) {
-                dispatch(setDashboard(response.data))
-            }
-            //null
-        })
-        .catch(error => {
-            console.error(error);
-        });
-}
-*/
 
 export const addCity = async (token, cityName, cityRegion, cityCountry, latitude, longitude) => {
     try {

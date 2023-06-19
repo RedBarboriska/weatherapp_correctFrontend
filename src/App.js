@@ -50,30 +50,7 @@ function App() {
 
     const [backendData, setBackendData] = useState([{}])
 
-   /* useEffect(() => {
-        fetch('http://localhost:5000/api').then(
-            response => response.json()
-        ).then(
-            data => {
-                setBackendData(data)
-                console.log(data)
-            }
-        )
-        console.log('backendData')
-        const login = 'user1';
-        const password = '1111';
-        const login2 = 'user2';
-        const name = 'Petro';
-        /*axios.post('http://localhost:5000/login', {login, password})
-            .then(response => {
-                console.log(response.data);
-                //null
-            })
-            .catch(error => {
-                console.error(error);
-            });*/
 
-    /*}, [])*/
 
 
     const fetchDataByQuery = async (query) => {

@@ -12,13 +12,7 @@ export const geolocationSlice = createSlice({
     name: 'geolocation',
     initialState,
     reducers: {
-       /* setGeolocation: (state, action) => {
-            //state.cityName = action.payload.cityName
-            //state.cityRegion = action.payload.cityRegion
-            //state.cityCountry = action.payload.cityCountry
-            state.latitude = action.payload.latitude
-            state.longitude = action.payload.longitude
-        },*/
+
         setGeolocation: (state, {payload}) => payload,
     },
 })
